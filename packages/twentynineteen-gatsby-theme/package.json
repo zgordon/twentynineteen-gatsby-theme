@@ -13,5 +13,8 @@
     "gatsby": "^2.1.19",
     "react": "^16.8.3",
     "react-dom": "^16.8.3"
+  },
+  "dependencies": {
+    "gatsby-source-graphql": "^2.0.11"
   }
 }
