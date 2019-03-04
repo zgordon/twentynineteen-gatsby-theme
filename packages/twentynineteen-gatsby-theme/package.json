@@ -15,6 +15,7 @@
     "react-dom": "^16.8.3"
   },
   "dependencies": {
+    "autoprefixer": "^9.4.9",
     "axios": "^0.18.0",
     "gatsby-plugin-postcss": "^2.0.5",
     "gatsby-plugin-sass": "^2.0.10",
