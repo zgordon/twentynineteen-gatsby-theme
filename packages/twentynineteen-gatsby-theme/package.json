@@ -16,6 +16,10 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "gatsby-source-graphql": "^2.0.11"
+    "gatsby-plugin-postcss": "^2.0.5",
+    "gatsby-plugin-sass": "^2.0.10",
+    "gatsby-source-graphql": "^2.0.11",
+    "node-sass": "^4.11.0",
+    "prop-types": "^15.7.2"
   }
 }

@@ -1,14 +1,15 @@
 import React from "react";
+import Layout from "../components/layout";
 
 const Post = props => {
   const {
     pageContext: { title, content }
   } = props;
   return (
-    <div>
+    <Layout>
       <h1>{title}</h1>
       <div dangerouslySetInnerHTML={{ __html: content }} />
-    </div>
+    </Layout>
   );
 };
 
