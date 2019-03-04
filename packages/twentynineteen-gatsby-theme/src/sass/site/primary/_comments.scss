@@ -44,13 +44,15 @@
 			margin: 0;
 
 			@include media(tablet) {
-				flex: 1 0 calc(3 * (100vw / 12));
+				// flex: 1 0 calc(3 * (100vw / 12)); // causing build to fail, so:
+				flex: 1 0 25%;
 			}
 		}
 
 		.discussion-meta {
 			@include media(tablet) {
-				flex: 0 0 calc(2 * (100vw / 12));
+				// flex: 0 0 calc(2 * (100vw / 12)); // causing build to fail, so
+				flex: 0 0 16.67%;
 				margin-left: #{$size__spacing-unit};
 			}
 		}
