@@ -1,4 +1,56 @@
+var axios = require("axios");
+
 module.exports = async ({ graphql, actions }) => {
+  const { createPage } = actions;
+
+  const GET_POSTS = `
+    query GET_POSTS($first:Int $after:String) {
+        posts(
+            first: $first 
+            after:$after
+        ) {
+            pageInfo {
+            endCursor
+            hasNextPage
+            }
+            edges {
+                node {
+                    uri
+                    title
+                    content
+                }
+            }
+        }
+    }`;
+  const res = await axios({
+    url: "https://www.mtwoblog.com/graphql",
+    method: "get",
+    params: {
+      QUERY: GET_POSTS
+    }
+  });
+  const {
+    data: {
+      posts: {
+        edges: allPosts,
+        pageInfo: { hasNextPage, endCursor }
+      }
+    }
+  } = res.data;
+
+  const postTemplate = require.resolve(`../src/templates/post.js`);
+
+  allPosts.map(post => {
+    post = post.node;
+    console.log(`create post: ${post.uri}`);
+    createPage({
+      path: `/blog/${post.uri}/`,
+      component: postTemplate,
+      context: post
+    });
+  });
+
+  /*
   const GET_POSTS = `
       query GET_POSTS($first:Int $after:String){
         wpgraphql {
@@ -35,37 +87,37 @@ module.exports = async ({ graphql, actions }) => {
         }
       } = data;
 
-      //   const nodeIds = nodes.map(node => node.postId);
-      //   const blogTemplate = path.resolve(`./src/templates/blog.js`);
-      //   const blogPagePath = !variables.after ? `/` : `/page/${pageNumber}`;
+        const nodeIds = nodes.map(node => node.postId);
+        const blogTemplate = path.resolve(`../src/templates/blog.js`);
+        const blogPagePath = !variables.after ? `/` : `/page/${pageNumber}`;
 
-      //   blogPages[pageNumber] = {
-      //     path: blogPagePath,
-      //     component: blogTemplate,
-      //     context: {
-      //       ids: nodeIds,
-      //       pageNumber: pageNumber,
-      //       hasNextPage: hasNextPage
-      //     },
-      //     ids: nodeIds
-      //   };
+        blogPages[pageNumber] = {
+          path: blogPagePath,
+          component: blogTemplate,
+          context: {
+            ids: nodeIds,
+            pageNumber: pageNumber,
+            hasNextPage: hasNextPage
+          },
+          ids: nodeIds
+        };
       nodes.map(post => {
         allPosts.push(post);
       });
-      //   if (hasNextPage) {
-      //     pageNumber++;
-      //     return fetchPosts({ first: 12, after: endCursor });
-      //   }
+        if (hasNextPage) {
+          pageNumber++;
+          return fetchPosts({ first: 12, after: endCursor });
+        }
       return allPosts;
     });
 
   await fetchPosts({ first: 12, after: null }).then(allPosts => {
     const postTemplate = require.resolve(`../src/templates/post.js`);
 
-    // blogPages.map(blogPage => {
-    //   console.log(`createBlogPage ${blogPage.context.pageNumber}`);
-    //   createPage(blogPage);
-    // });
+    blogPages.map(blogPage => {
+      console.log(`createBlogPage ${blogPage.context.pageNumber}`);
+      createPage(blogPage);
+    });
 
     allPosts.map(post => {
       console.log(`create post: ${post.uri}`);
@@ -76,4 +128,5 @@ module.exports = async ({ graphql, actions }) => {
       });
     });
   });
+  */
 };
