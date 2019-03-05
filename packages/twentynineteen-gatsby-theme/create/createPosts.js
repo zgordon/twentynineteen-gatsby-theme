@@ -1,4 +1,7 @@
-var axios = require("axios");
+const axios = require("axios");
+
+import config from '../config.js';
+const { PostContentFragment } = require('../src/templates/Post/data');
 
 module.exports = async ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -18,12 +21,15 @@ module.exports = async ({ graphql, actions }) => {
                     uri
                     title
                     content
+                    ...PostContentFragment
                 }
             }
         }
-    }`;
+    }
+    ${PostContentFragment}
+    `;
   const res = await axios({
-    url: "https://www.mtwoblog.com/graphql",
+    url: `${config.wordPressUrl}/graphql`,
     method: "get",
     params: {
       QUERY: GET_POSTS
@@ -38,11 +44,12 @@ module.exports = async ({ graphql, actions }) => {
     }
   } = res.data;
 
-  const postTemplate = require.resolve(`../src/templates/post.js`);
+  const postTemplate = require.resolve(`../src/templates/Post`);
 
   allPosts.map(post => {
     post = post.node;
     console.log(`create post: ${post.uri}`);
+    console.log( post );
     createPage({
       path: `/blog/${post.uri}/`,
       component: postTemplate,
@@ -55,7 +62,7 @@ module.exports = async ({ graphql, actions }) => {
       query GET_POSTS($first:Int $after:String){
         wpgraphql {
           posts(
-            first: $first 
+            first: $first
             after:$after
           ) {
             pageInfo {
