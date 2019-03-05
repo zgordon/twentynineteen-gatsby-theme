@@ -5,9 +5,17 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
+    "esm": "^3.2.10",
     "gatsby": "^2.1.19",
     "react": "^16.8.3",
     "react-dom": "^16.8.3"
+  },
+  "scripts": {
+    "build": "npx --node-arg '-r esm' gatsby build",
+    "develop": "npx --node-arg '-r esm' gatsby develop",
+    "start": "npx --node-arg '-r esm' npm run develop",
+    "serve": "npx --node-arg '-r esm' gatsby serve",
+    "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
   },
   "peerDependencies": {
     "gatsby": "^2.1.19",
