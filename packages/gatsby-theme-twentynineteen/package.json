@@ -5,14 +5,14 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "gatsby": "^2.0.117",
-    "react": "^16.8.1",
-    "react-dom": "^16.8.1"
+    "gatsby": "^2.1.23",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3"
   },
   "peerDependencies": {
-    "gatsby": "^2.0.117",
-    "react": "^16.8.1",
-    "react-dom": "^16.8.1"
+    "gatsby": "^2.1.23",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3"
   },
   "dependencies": {
     "autoprefixer": "^9.4.9",
