@@ -1,12 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from "react"
+import PropTypes from "prop-types"
 // import { StaticQuery, graphql } from "gatsby";
-import Header from "./header";
-import Footer from "./footer";
-import "../style.scss";
+import Header from "./header"
+import Footer from "./footer"
+import "../style.scss"
 
-const Layout = ({ children }) => (
-  <div id="page" className="site">
+const Layout = ({ children, classNames }) => (
+  <div id="page" className={`site ${classNames}`}>
     <a className="skip-link screen-reader-text" href="#content">
       Skip to content
     </a>
@@ -23,16 +23,16 @@ const Layout = ({ children }) => (
     <div
       style={{
         margin: `0 auto`,
-        paddingTop: 0
+        paddingTop: 0,
       }}
     >
       <Footer />
     </div>
   </div>
-);
+)
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired
-};
+  children: PropTypes.node.isRequired,
+}
 
-export default Layout;
+export default Layout

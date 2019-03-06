@@ -5,5 +5,5 @@ module.exports = {
     author: `@muhsinlk`,
     wordPressUrl: `https://mtwoblog.com`
   },
-  __experimentalThemes: ["twentynineteen-gatsby-theme"]
+  __experimentalThemes: ["gatsby-theme-twentynineteen"]
 };

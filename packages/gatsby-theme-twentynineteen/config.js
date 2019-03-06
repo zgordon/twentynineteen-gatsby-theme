@@ -7,7 +7,7 @@
  * @type {{wordPressUrl: string}}
  */
 const config = {
-    wordPressUrl: `https://www.mtwoblog.com`
-};
+  wordPressUrl: `https://www.mtwoblog.com`,
+}
 
-export default config
+module.exports = config

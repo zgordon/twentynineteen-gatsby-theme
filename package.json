@@ -1,24 +1,9 @@
 {
   "private": true,
   "name": "twentynineteen-gatsby-theme",
-  "version": "0.1.0",
-  "description": "A port of the Twenty Nineteen WordPress Theme over to Gatsby",
-  "main": "index.js",
+  "version": "1.0.0",
   "workspaces": [
     "starter",
     "packages/*"
-  ],
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zgordon/twentynineteen-gatsby-theme.git"
-  },
-  "author": "m-muhsin",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/zgordon/twentynineteen-gatsby-theme/issues"
-  },
-  "homepage": "https://github.com/zgordon/twentynineteen-gatsby-theme#readme"
+  ]
 }

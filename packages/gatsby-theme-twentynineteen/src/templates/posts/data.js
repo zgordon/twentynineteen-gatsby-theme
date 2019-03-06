@@ -1,12 +1,12 @@
-export const PostTemplateFragment = `
+const PostTemplateFragment = `
     fragment PostTemplateFragment on Post { 
       id
       postId
       title
       content
     }
-`;
-export const BlogPreviewFragment = `
+`
+const BlogPreviewFragment = `
 fragment BlogPreviewFragment on Post {
     id
     postId
@@ -21,4 +21,7 @@ fragment BlogPreviewFragment on Post {
         }
     }
 }
-`;
+`
+
+module.exports.PostTemplateFragment = PostTemplateFragment
+module.exports.BlogPreviewFragment = BlogPreviewFragment
