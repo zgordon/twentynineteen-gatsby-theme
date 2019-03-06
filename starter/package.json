@@ -5,8 +5,11 @@
   "main": "gatsby-config.js",
   "license": "MIT",
   "scripts": {
-    "develop": "gatsby develop",
-    "build": "gatsby build"
+    "build": "npx --node-arg \"-r esm\" gatsby build",
+    "develop": "npx --node-arg \"-r esm\" gatsby develop",
+    "start": "npx --node-arg \"-r esm\" npm run develop",
+    "serve": "npx --node-arg \"-r esm\" gatsby serve",
+    "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
   },
   "dependencies": {
     "gatsby": "^2.1.19",
