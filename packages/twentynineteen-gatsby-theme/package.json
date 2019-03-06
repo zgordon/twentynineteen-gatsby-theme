@@ -14,7 +14,7 @@
     "build": "npx --node-arg '-r esm' gatsby build",
     "develop": "npx --node-arg '-r esm' gatsby develop",
     "start": "npx --node-arg '-r esm' npm run develop",
-    "serve": "npx --node-arg '-r esm' gatsby serve",
+    "serve": "npx --node-arg '-r esm' gatsby serve --port=9002",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
   },
   "peerDependencies": {
