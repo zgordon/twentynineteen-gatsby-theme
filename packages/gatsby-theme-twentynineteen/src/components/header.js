@@ -1,5 +1,5 @@
 import React from "react"
-import { StaticQuery, graphql } from "gatsby"
+import { StaticQuery, graphql, Link } from "gatsby"
 
 const Header = props => (
   <StaticQuery
@@ -19,9 +19,9 @@ const Header = props => (
           <div className="site-branding-container">
             <div className="site-branding">
               <p className="site-title">
-                <a href="http://localhost/mtwoblog.com/" rel="home">
+                <Link to="/" rel="home">
                   {data.site.siteMetadata.title}
-                </a>
+                </Link>
               </p>
 
               <p className="site-description">
