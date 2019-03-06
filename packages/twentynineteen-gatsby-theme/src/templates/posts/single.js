@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../../components/layout";
 
-const Post = props => {
+const SinglePost = props => {
     const {
         pageContext: { id, postId, title, content }
     } = props;
@@ -32,4 +32,4 @@ const Post = props => {
     );
 };
 
-export default Post;
+export default SinglePost;
