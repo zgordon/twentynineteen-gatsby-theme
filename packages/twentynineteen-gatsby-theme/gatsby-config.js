@@ -1,6 +1,12 @@
-const autoprefixer = require("autoprefixer");
+const autoprefixer = require("autoprefixer")
 
 module.exports = {
+  siteMetadata: {
+    title: `Twenty Nineteen Gatsby`,
+    description: `A port of the popular WordPress theme.`,
+    siteUrl: "http://localhost:8000",
+    author: `@muhsinlk`,
+  },
   plugins: [
     `gatsby-plugin-sass`,
     {
@@ -8,10 +14,10 @@ module.exports = {
       options: {
         postCssPlugins: [
           autoprefixer({
-            browsers: ["last 2 versions"]
-          })
-        ]
-      }
-    }
-  ]
-};
+            browsers: ["last 2 versions"],
+          }),
+        ],
+      },
+    },
+  ],
+}
