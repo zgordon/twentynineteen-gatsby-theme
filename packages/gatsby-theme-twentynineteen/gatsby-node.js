@@ -1,5 +1,4 @@
 const createPosts = require(`./create/createPosts`)
-const createPages = require(`./create/createPages`)
 const createTags = require(`./create/createTags`)
 const createPages = require(`./create/createPages`)
 

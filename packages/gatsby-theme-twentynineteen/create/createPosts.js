@@ -4,25 +4,25 @@ const postTemplate = require.resolve(`../src/templates/posts/single.js`)
 const blogTemplate = require.resolve(`../src/templates/posts/archive.js`)
 
 const GET_POSTS = `
-  query GET_POSTS($first:Int $after:String){
-    wpgraphql {
-      posts(
-        first: $first 
-        after:$after
-      ) {
-        pageInfo {
-          endCursor
-          hasNextPage
-        }
-        nodes {
-          id
-          uri
-          postId
-          title
-        }
+query GET_POSTS($first:Int $after:String){
+  wpgraphql {
+    posts(
+      first: $first 
+      after:$after
+    ) {
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+      nodes {
+        id
+        uri
+        postId
+        title
       }
     }
   }
+}
 `
 
 /**
@@ -65,15 +65,6 @@ module.exports = async ({ actions, graphql }) => {
    */
   const { createPage } = actions
 
-  /**
-   * Fetch posts method. This accepts variables to alter
-   * the query. The variable `first` controls how many items to
-   * request per fetch and the `after` controls where to start in
-   * the dataset.
-   *
-   * @param variables
-   * @returns {Promise<*>}
-   */
   const fetchPosts = async variables => {
     /**
      * Use Axios to fetch posts using
