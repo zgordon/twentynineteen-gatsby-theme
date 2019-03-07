@@ -42,9 +42,6 @@ const allPages = []
  */
 let pageNumber = 0
 
-
-
-
 /**
  * This is the export which Gatbsy will use to process.
  *
@@ -85,7 +82,7 @@ module.exports = async ({ actions, graphql }) => {
           },
         },
       } = data
-  
+
       /**
        * Map over the pages for later creation
        */
@@ -93,7 +90,7 @@ module.exports = async ({ actions, graphql }) => {
         nodes.map(pages => {
           allPages.push(pages)
         })
-  
+
       /**
        * If there's another page, fetch more
        * so we can have all the data we need.
@@ -103,7 +100,7 @@ module.exports = async ({ actions, graphql }) => {
         console.log(`fetch page ${pageNumber} of pages...`)
         return fetchPages({ first: 10, after: endCursor })
       }
-  
+
       /**
        * Once we're done, return all the pages
        * so we can create the necessary pages with
