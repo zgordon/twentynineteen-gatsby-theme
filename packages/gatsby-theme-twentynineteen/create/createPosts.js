@@ -4,25 +4,25 @@ const postTemplate = require.resolve(`../src/templates/posts/single.js`)
 const blogTemplate = require.resolve(`../src/templates/posts/archive.js`)
 
 const GET_POSTS = `
-query GET_POSTS($first:Int $after:String){
-  wpgraphql {
-    posts(
-      first: $first 
-      after:$after
-    ) {
-      pageInfo {
-        endCursor
-        hasNextPage
-      }
-      nodes {
-        id
-        uri
-        postId
-        title
+  query GET_POSTS($first:Int $after:String){
+    wpgraphql {
+      posts(
+        first: $first 
+        after:$after
+      ) {
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        nodes {
+          id
+          uri
+          postId
+          title
+        }
       }
     }
   }
-}
 `
 
 /**
