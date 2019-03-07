@@ -1,18 +1,20 @@
 import React from "react"
 import { StaticQuery, graphql, Link } from "gatsby"
 
+const HEADER_QUERY =  graphql`
+  query SiteTitleQuery {
+    site {
+      siteMetadata {
+        title
+        description
+      }
+    }
+  }
+`
+
 const Header = props => (
   <StaticQuery
-    query={graphql`
-      query SiteTitleQuery {
-        site {
-          siteMetadata {
-            title
-            description
-          }
-        }
-      }
-    `}
+    query={HEADER_QUERY}
     render={data => {
       return (
         <header id="masthead" className="site-header">
