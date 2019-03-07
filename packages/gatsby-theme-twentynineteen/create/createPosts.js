@@ -55,27 +55,22 @@ let pageNumber = 0
 /**
  * This is the export which Gatbsy will use to process.
  *
- * @param actions
+ * @param { actions, graphql }
  * @returns {Promise<void>}
  */
 module.exports = async ({ actions, graphql }) => {
-  console.log('graphql-g', graphql)
   /**
    * This is the method from Gatsby that we're going
    * to use to create pages in our static site.
    */
   const { createPage } = actions
 
-
-
   const fetchPosts = async variables => {
-    console.log('variables', variables)
     /**
      * Use Axios to fetch posts using
      * the GET_POSTS query and the variables passed in.
      */
     return await graphql(GET_POSTS, variables).then(({ data }) => {
-      console.log('data', data)
       /**
        * Extract the data from the GraphQL query results
        */
@@ -138,18 +133,12 @@ module.exports = async ({ actions, graphql }) => {
     })
   }
 
-
-
-
-
-
-
   /**
    * Kick off our `fetchPosts` method which will get us all
    * the posts we need to create individual post pages
    * and paginated blogroll archive pages.
    */
-  await fetchPosts({ first: 10, after: null }, graphql).then(allPosts => {
+  await fetchPosts({ first: 10, after: null }).then(allPosts => {
     /**
      * Map over the allPosts array to create the
      * single-post pages
