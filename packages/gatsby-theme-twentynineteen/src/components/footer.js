@@ -130,57 +130,7 @@ const Footer = props => (
               <a href="http://localhost/mtwoblog.com/2018/08/">August 2018</a>
             </li>
             <li>
-              <a href="http://localhost/mtwoblog.com/2018/07/">July 2018</a>
-            </li>
-            <li>
-              <a href="http://localhost/mtwoblog.com/2018/05/">May 2018</a>
-            </li>
-            <li>
-              <a href="http://localhost/mtwoblog.com/2018/03/">March 2018</a>
-            </li>
-            <li>
-              <a href="http://localhost/mtwoblog.com/2017/10/">October 2017</a>
-            </li>
-            <li>
-              <a href="http://localhost/mtwoblog.com/2017/08/">August 2017</a>
-            </li>
-            <li>
-              <a href="http://localhost/mtwoblog.com/2017/02/">February 2017</a>
-            </li>
-            <li>
-              <a href="http://localhost/mtwoblog.com/2016/11/">November 2016</a>
-            </li>
-            <li>
-              <a href="http://localhost/mtwoblog.com/2016/09/">
-                September 2016
-              </a>
-            </li>
-            <li>
-              <a href="http://localhost/mtwoblog.com/2016/07/">July 2016</a>
-            </li>
-            <li>
-              <a href="http://localhost/mtwoblog.com/2016/05/">May 2016</a>
-            </li>
-            <li>
-              <a href="http://localhost/mtwoblog.com/2016/04/">April 2016</a>
-            </li>
-            <li>
-              <a href="http://localhost/mtwoblog.com/2016/03/">March 2016</a>
-            </li>
-            <li>
-              <a href="http://localhost/mtwoblog.com/2016/02/">February 2016</a>
-            </li>
-            <li>
-              <a href="http://localhost/mtwoblog.com/2016/01/">January 2016</a>
-            </li>
-            <li>
-              <a href="http://localhost/mtwoblog.com/2015/12/">December 2015</a>
-            </li>
-            <li>
-              <a href="http://localhost/mtwoblog.com/2015/06/">June 2015</a>
-            </li>
-            <li>
-              <a href="http://localhost/mtwoblog.com/2015/05/">May 2015</a>
+              <a href="http://localhost/mtwoblog.com/2018/08/">July 2018</a>
             </li>
           </ul>
         </section>
@@ -215,62 +165,6 @@ const Footer = props => (
             <li className="cat-item cat-item-7">
               <a href="http://localhost/mtwoblog.com/category/javascript/">
                 JavaScript
-              </a>
-            </li>
-            <li className="cat-item cat-item-8">
-              <a href="http://localhost/mtwoblog.com/category/lessons/">
-                Lessons
-              </a>
-            </li>
-            <li className="cat-item cat-item-9">
-              <a href="http://localhost/mtwoblog.com/category/mobile/">
-                Mobile
-              </a>
-            </li>
-            <li className="cat-item cat-item-10">
-              <a href="http://localhost/mtwoblog.com/category/mobile-development/">
-                Mobile Development
-              </a>
-            </li>
-            <li className="cat-item cat-item-11">
-              <a href="http://localhost/mtwoblog.com/category/onion-omega/">
-                Onion Omega
-              </a>
-            </li>
-            <li className="cat-item cat-item-12">
-              <a href="http://localhost/mtwoblog.com/category/productivity/">
-                Productivity
-              </a>
-            </li>
-            <li className="cat-item cat-item-13">
-              <a href="http://localhost/mtwoblog.com/category/react/">React</a>
-            </li>
-            <li className="cat-item cat-item-14">
-              <a href="http://localhost/mtwoblog.com/category/software-development/">
-                Software Development
-              </a>
-            </li>
-            <li className="cat-item cat-item-1">
-              <a href="http://localhost/mtwoblog.com/category/uncategorized/">
-                Uncategorized
-              </a>
-            </li>
-            <li className="cat-item cat-item-16">
-              <a href="http://localhost/mtwoblog.com/category/ux/">UX</a>
-            </li>
-            <li className="cat-item cat-item-17">
-              <a href="http://localhost/mtwoblog.com/category/web-design/">
-                Web Design
-              </a>
-            </li>
-            <li className="cat-item cat-item-18">
-              <a href="http://localhost/mtwoblog.com/category/web-development/">
-                Web Development
-              </a>
-            </li>
-            <li className="cat-item cat-item-19">
-              <a href="http://localhost/mtwoblog.com/category/wordpress/">
-                WordPress
               </a>
             </li>
           </ul>
