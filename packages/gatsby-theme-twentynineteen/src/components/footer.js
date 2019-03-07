@@ -1,10 +1,9 @@
-import React from "react";
+import React from "react"
 
 const Footer = props => (
   <footer id="colophon" className="site-footer">
     <aside className="widget-area" aria-label="Footer">
       <div className="widget-column footer-widget-1">
-        <section id="search-2" className="widget widget_search" />
         <section id="recent-posts-2" className="widget widget_recent_entries">
           <h2 className="widget-title">Recent Posts</h2>
           <ul>
@@ -215,6 +214,6 @@ const Footer = props => (
     </div>
     {/* .site-info */}
   </footer>
-);
+)
 
-export default Footer;
+export default Footer
