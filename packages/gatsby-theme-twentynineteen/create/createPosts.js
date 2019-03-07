@@ -1,5 +1,3 @@
-const { PostTemplateFragment } = require("../src/templates/posts/data.js")
-const { BlogPreviewFragment } = require("../src/templates/posts/data.js")
 const postTemplate = require.resolve(`../src/templates/post.js`)
 const blogTemplate = require.resolve(`../src/templates/blog.js`)
 
