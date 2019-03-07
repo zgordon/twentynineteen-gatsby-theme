@@ -1,5 +1,4 @@
-const { PageTemplateFragment } = require("../src/templates/page/data.js")
-const pageTemplate = require.resolve(`../src/templates/page/index.js`)
+const pageTemplate = require.resolve(`../src/templates/page.js`)
 
 const GET_PAGES = `
   query GET_PAGES($first:Int $after:String){

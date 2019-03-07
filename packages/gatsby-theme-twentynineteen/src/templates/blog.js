@@ -12,7 +12,6 @@ const IndexPage = props => {
 
   return (
     <Layout location={location} classNames="home blog hfeed">
-      <h1>Blog Page {pageNumber}</h1>
       <div>
         {data &&
           data.wpgraphql &&
