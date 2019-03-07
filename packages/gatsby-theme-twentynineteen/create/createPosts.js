@@ -1,7 +1,7 @@
 const { PostTemplateFragment } = require("../src/templates/posts/data.js")
 const { BlogPreviewFragment } = require("../src/templates/posts/data.js")
-const postTemplate = require.resolve(`../src/templates/posts/single.js`)
-const blogTemplate = require.resolve(`../src/templates/posts/archive.js`)
+const postTemplate = require.resolve(`../src/templates/post.js`)
+const blogTemplate = require.resolve(`../src/templates/blog.js`)
 
 const GET_POSTS = `
 query GET_POSTS($first:Int $after:String){
@@ -82,14 +82,19 @@ module.exports = async ({ actions, graphql }) => {
           },
         },
       } = data
-  
+
       /**
        * Define the path for the paginated blog page.
        * This is the url the page will live at
        * @type {string}
        */
       const blogPagePath = !variables.after ? `/` : `/page/${pageNumber}`
-  
+
+      /**
+       * The IDs of the posts which were got from GraphQL.
+       */
+      const nodeIds = nodes.map(node => node.postId)
+
       /**
        * Add config for the blogPage to the blogPage array
        * for creating later
@@ -100,12 +105,13 @@ module.exports = async ({ actions, graphql }) => {
         path: blogPagePath,
         component: blogTemplate,
         context: {
+          ids: nodeIds,
           nodes,
           pageNumber,
           hasNextPage,
         },
       }
-  
+
       /**
        * Map over the posts for later creation
        */
@@ -113,7 +119,7 @@ module.exports = async ({ actions, graphql }) => {
         nodes.map(post => {
           allPosts.push(post)
         })
-  
+
       /**
        * If there's another page, fetch more
        * so we can have all the data we need.
@@ -123,7 +129,7 @@ module.exports = async ({ actions, graphql }) => {
         console.log(`fetch page ${pageNumber} of posts...`)
         return fetchPosts({ first: 10, after: endCursor })
       }
-  
+
       /**
        * Once we're done, return all the posts
        * so we can create the necessary pages with
