@@ -86,7 +86,7 @@ module.exports = async ({ actions, graphql }) => {
        * This is the url the page will live at
        * @type {string}
        */
-      const blogPagePath = !variables.after ? `/` : `/page/${pageNumber}`
+      const blogPagePath = !variables.after ? `/` : `/page/${pageNumber + 1}`
 
       /**
        * The IDs of the posts which were got from GraphQL.
@@ -105,7 +105,7 @@ module.exports = async ({ actions, graphql }) => {
         context: {
           ids: nodeIds,
           nodes,
-          pageNumber,
+          pageNumber: pageNumber + 1,
           hasNextPage,
         },
       }

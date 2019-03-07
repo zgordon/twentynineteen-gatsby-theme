@@ -10,11 +10,11 @@ const renderPreviousLink = props => {
 
   let previousLink = null
 
-  if (!pageNumber) {
+  if (!pageNumber || pageNumber === 1) {
     return null
-  } else if (1 === pageNumber) {
+  } else if (2 === pageNumber) {
     previousLink = `/`
-  } else if (1 < pageNumber) {
+  } else if (2 < pageNumber) {
     previousLink = `/page/${pageNumber - 1}`
   }
 
