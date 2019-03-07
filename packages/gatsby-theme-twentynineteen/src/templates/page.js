@@ -1,13 +1,20 @@
 import React from "react"
+import { graphql } from "gatsby"
 import Layout from "../components/layout"
 
 const SinglePage = props => {
   const {
-    pageContext: { id, postId, title, content },
+    pageContext: { id, postId },
+    location,
+    data: {
+      wpgraphql: { page },
+    },
   } = props
 
+  const { title, content } = page
+
   return (
-    <Layout>
+    <Layout location={location}>
       <article
         data-id={id}
         id={`post-${postId}`}
@@ -33,3 +40,15 @@ const SinglePage = props => {
 }
 
 export default SinglePage
+
+export const pageQuery = graphql`
+  query GET_PAGE($id: ID!) {
+    wpgraphql {
+      page(id: $id) {
+        title
+        content
+        uri
+      }
+    }
+  }
+`
