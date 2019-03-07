@@ -65,6 +65,15 @@ module.exports = async ({ actions, graphql }) => {
    */
   const { createPage } = actions
 
+  /**
+   * Fetch posts method. This accepts variables to alter
+   * the query. The variable `first` controls how many items to
+   * request per fetch and the `after` controls where to start in
+   * the dataset.
+   *
+   * @param variables
+   * @returns {Promise<*>}
+   */
   const fetchPosts = async variables => {
     /**
      * Use Axios to fetch posts using
