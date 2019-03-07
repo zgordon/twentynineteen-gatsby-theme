@@ -1,41 +1,29 @@
-const axios = require("axios")
-const config = require("../config.js")
 const { PageTemplateFragment } = require("../src/templates/page/data.js")
 const pageTemplate = require.resolve(`../src/templates/page/index.js`)
 
 const GET_PAGES = `
-# Define our query variables
-query GET_PAGES($first:Int $after:String) {
-    # Ask for pages
-    pages(
-        # Ask for the first XX number of pages
+  query GET_PAGES($first:Int $after:String){
+    wpgraphql {
+      pages(
         first: $first 
-        
-        # A Cursor to where in the dataset our query should start
-        # and get items _after_ that point
-        after:$after
-    ) {
-        # In response, we'll want pageInfo so we know if we need
-        # to fetch more pages or not.
-        pageInfo {
-            # If true, we need to ask for more data.
-            hasNextPage
-            
-            # This cursor will be used for the value for $after
-            # if we need to ask for more data
-            endCursor
-        } 
-        nodes {
-            uri
-            
-            # This is the fragment used for the pages Template
-            ...PageTemplateFragment
-            
+        after: $after
+        where: {
+          parent: null
         }
+      ) {
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        nodes {
+          id
+          uri
+          pageId
+          title
+        }
+      }
     }
-}
-# Here we make use of the imported fragments which are referenced above
-${PageTemplateFragment}
+  }
 `
 
 /**
@@ -55,84 +43,72 @@ const allPages = []
 let pageNumber = 0
 
 /**
- * Fetch pages method. This accepts variables to alter
- * the query. The variable `first` controls how many items to
- * request per fetch and the `after` controls where to start in
- * the dataset.
- *
- * @param variables
- * @returns {Promise<*>}
- */
-const fetchPages = async variables => {
-  /**
-   * Use Axios to fetch pages using
-   * the GET_PAGES query and the variables passed in.
-   */
-  return await axios({
-    url: `${config.wordPressUrl}/graphql`,
-    method: "post",
-    data: {
-      query: GET_PAGES,
-      variables,
-    },
-    /**
-     * The results of the Axios request are passed here
-     */
-  }).then(({ data }) => {
-    console.log("data: ", data)
-    /**
-     * Extract the data from the GraphQL query results
-     */
-    const {
-      data: {
-        pages: {
-          pageInfo: { hasNextPage, endCursor },
-          nodes,
-        },
-      },
-    } = data
-
-    /**
-     * Map over the pages for later creation
-     */
-    nodes &&
-      nodes.map(pages => {
-        allPages.push(pages)
-      })
-
-    /**
-     * If there's another page, fetch more
-     * so we can have all the data we need.
-     */
-    if (hasNextPage) {
-      pageNumber++
-      console.log(`fetch page ${pageNumber} of pages...`)
-      return fetchPages({ first: 10, after: endCursor })
-    }
-
-    /**
-     * Once we're done, return all the pages
-     * so we can create the necessary pages with
-     * all the data on hand.
-     */
-    return allPages
-  })
-}
-
-module.exports = fetchPages
-
-/**
  * This is the export which Gatbsy will use to process.
  *
  * @param actions
  * @returns {Promise<void>}
  */
-module.exports = async ({ actions }) => {
+module.exports = async ({ actions, graphql }) => {
   /**
    * This is the method from Gatsby that we're going
    * to use to create pages in our static site.
    */
   const { createPage } = actions
+
+  /**
+   * Fetch pages method. This accepts variables to alter
+   * the query. The variable `first` controls how many items to
+   * request per fetch and the `after` controls where to start in
+   * the dataset.
+   *
+   * @param variables
+   * @returns {Promise<*>}
+   */
+  const fetchPages = async variables => {
+    /**
+     * Use Axios to fetch pages using
+     * the GET_PAGES query and the variables passed in.
+     */
+    return await graphql(GET_PAGES, variables).then(({ data }) => {
+      console.log("data: ", data)
+      /**
+       * Extract the data from the GraphQL query results
+       */
+      const {
+        wpgraphql: {
+          pages: {
+            nodes,
+            pageInfo: { hasNextPage, endCursor },
+          },
+        },
+      } = data
+
+      /**
+       * Map over the pages for later creation
+       */
+      nodes &&
+        nodes.map(pages => {
+          allPages.push(pages)
+        })
+
+      /**
+       * If there's another page, fetch more
+       * so we can have all the data we need.
+       */
+      if (hasNextPage) {
+        pageNumber++
+        console.log(`fetch page ${pageNumber} of pages...`)
+        return fetchPages({ first: 10, after: endCursor })
+      }
+
+      /**
+       * Once we're done, return all the pages
+       * so we can create the necessary pages with
+       * all the data on hand.
+       */
+      return allPages
+    })
+  }
 
   /**
    * Kick off our `fetchPages` method which will get us all
