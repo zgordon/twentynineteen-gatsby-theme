@@ -4,6 +4,11 @@ const PostTemplateFragment = `
       postId
       title
       content
+      categories {
+        nodes {
+          name
+        }
+      }
     }
 `
 const BlogPreviewFragment = `
