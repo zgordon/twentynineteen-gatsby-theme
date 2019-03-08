@@ -112,7 +112,7 @@ const fetchPosts = async variables => {
      * This is the url the page will live at
      * @type {string}
      */
-    const blogPagePath = !variables.after ? `/` : `/page/${pageNumber}`
+    const blogPagePath = !variables.after ? `/` : `/page/${pageNumber + 1}`
 
     /**
      * Add config for the blogPage to the blogPage array
@@ -125,7 +125,7 @@ const fetchPosts = async variables => {
       component: blogTemplate,
       context: {
         nodes,
-        pageNumber,
+        pageNumber: pageNumber + 1,
         hasNextPage,
       },
     }
