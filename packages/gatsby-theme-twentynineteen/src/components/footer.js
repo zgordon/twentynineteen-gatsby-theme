@@ -17,9 +17,10 @@ const Footer = props => (
       <Link className="site-name" to="/" rel="home">
         Twenty Nineteen Gatsby Theme
       </Link>
-      <Link href="https://GatsbyWPThemes.com/" className="imprint">
+      ,{" "}
+      <a href="https://GatsbyWPThemes.com/" className="imprint">
         Proudly powered by GatsbyWPThemes.com
-      </Link>
+      </a>
     </div>
     {/* .site-info */}
   </footer>

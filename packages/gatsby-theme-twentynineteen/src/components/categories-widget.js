@@ -1,44 +1,59 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
+import { Link } from "gatsby"
+import axios from "axios"
+import { wordPressUrl } from "../../config"
+
+const ALL_CATEGORIES_QUERY = `
+query GetCategories {
+    categories(first: 100) {
+      nodes {
+        name
+        slug
+      }
+    }
+  }
+`
 
 const CategoriesWidget = props => {
+  //initialize the state
+  const [categories, setCategories] = useState([])
+
+  // Similar to componentDidMount and componentDidUpdate:
+  useEffect(() => {
+    // call fetchPosts when the component mounts
+    fetchCategories()
+  }, [])
+
+  const fetchCategories = async () => {
+    if (typeof window !== "undefined" && window.allCategories) {
+      setCategories(window.allCategories)
+    }
+    const results = await axios({
+      url: `${wordPressUrl}/graphql`,
+      method: "post",
+      data: {
+        query: ALL_CATEGORIES_QUERY,
+      },
+    })
+    if (results.data.data.categories) {
+      setCategories(results.data.data.categories.nodes)
+      if (typeof window !== "undefined") {
+        window.allCategories = results.data.data.categories.nodes
+      }
+    }
+  }
+
   return (
     <section id="categories-2" className="widget widget_categories">
-      <h2 className="widget-title">Categories</h2>{" "}
+      <h2 className="widget-title">Categories</h2>
       <ul>
-        <li className="cat-item cat-item-4">
-          <a href="http://localhost/mtwoblog.com/category/gutenberg/">
-            Gutenberg
-          </a>
-        </li>
-        <li className="cat-item cat-item-7">
-          <a href="http://localhost/mtwoblog.com/category/javascript/">
-            JavaScript
-          </a>
-        </li>
-        <li className="cat-item cat-item-8">
-          <a href="http://localhost/mtwoblog.com/category/lessons/">Lessons</a>
-        </li>
-        <li className="cat-item cat-item-9">
-          <a href="http://localhost/mtwoblog.com/category/mobile/">Mobile</a>
-        </li>
-        <li className="cat-item cat-item-10">
-          <a href="http://localhost/mtwoblog.com/category/mobile-development/">
-            Mobile Development
-          </a>
-        </li>
-        <li className="cat-item cat-item-12">
-          <a href="http://localhost/mtwoblog.com/category/productivity/">
-            Productivity
-          </a>
-        </li>
-        <li className="cat-item cat-item-13">
-          <a href="http://localhost/mtwoblog.com/category/react/">React</a>
-        </li>
-        <li className="cat-item cat-item-19">
-          <a href="http://localhost/mtwoblog.com/category/wordpress/">
-            WordPress
-          </a>
-        </li>
+        {categories.length
+          ? categories.map(category => (
+              <li key={category.slug}>
+                <Link to={`/blog/${category.slug}`}>{category.name}</Link>
+              </li>
+            ))
+          : null}
       </ul>
     </section>
   )
