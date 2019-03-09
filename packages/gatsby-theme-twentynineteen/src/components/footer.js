@@ -1,113 +1,11 @@
 import React from "react"
+import RecentPostsWidget from "./recent-posts-widget"
 
 const Footer = props => (
   <footer id="colophon" className="site-footer">
     <aside className="widget-area" aria-label="Footer">
       <div className="widget-column footer-widget-1">
-        <section id="recent-posts-2" className="widget widget_recent_entries">
-          <h2 className="widget-title">Recent Posts</h2>
-          <ul>
-            <li>
-              <a href="http://localhost/mtwoblog.com/2019/02/25/hello-world/">
-                Hello world!
-              </a>
-            </li>
-            <li>
-              <a href="http://localhost/mtwoblog.com/2019/02/04/using-react-context-api-with-gatsby/">
-                Using React Context API with Gatsby
-              </a>
-            </li>
-            <li>
-              <a href="http://localhost/mtwoblog.com/2019/01/23/my-2018-in-a-blog-post/">
-                My 2018 in a Blog Post
-              </a>
-            </li>
-            <li>
-              <a href="http://localhost/mtwoblog.com/2018/10/18/getting-started-with-gutenberg-by-creating-your-own-block/">
-                Getting Started With Gutenberg By Creating Your Own Block
-              </a>
-            </li>
-            <li>
-              <a href="http://localhost/mtwoblog.com/2018/09/23/wordpress-features/">
-                My Favorite WordPress Features
-              </a>
-            </li>
-          </ul>
-        </section>
-        <section
-          id="recent-comments-2"
-          className="widget widget_recent_comments"
-        >
-          <h2 className="widget-title">Recent Comments</h2>
-          <ul id="recentcomments">
-            <li className="recentcomments">
-              <span className="comment-author-link">
-                <a
-                  href="http://mtwoblog.com"
-                  rel="external nofollow"
-                  className="url"
-                >
-                  Muhammad Muhsin
-                </a>
-              </span>{" "}
-              on{" "}
-              <a href="http://localhost/mtwoblog.com/2018/08/05/going-forward-with-gutenberg/#comment-84">
-                Going forward with Gutenberg
-              </a>
-            </li>
-            <li className="recentcomments">
-              <span className="comment-author-link">
-                <a
-                  href="https://wordpress.org/"
-                  rel="external nofollow"
-                  className="url"
-                >
-                  A WordPress Commenter
-                </a>
-              </span>{" "}
-              on{" "}
-              <a href="http://localhost/mtwoblog.com/2019/02/25/hello-world/#comment-1">
-                Hello world!
-              </a>
-            </li>
-            <li className="recentcomments">
-              <span className="comment-author-link">
-                <a
-                  href="http://mtwoblog.com/2019/01/23/my-2018-in-a-blog-post/"
-                  rel="external nofollow"
-                  className="url"
-                >
-                  My 2018 in a Blog Post - M2 Blog
-                </a>
-              </span>{" "}
-              on{" "}
-              <a href="http://localhost/mtwoblog.com/2018/07/14/24-pieces-of-advice/#comment-81">
-                24 Pieces of Advice I Learnt in Life
-              </a>
-            </li>
-            <li className="recentcomments">
-              <span className="comment-author-link">phoebe</span> on{" "}
-              <a href="http://localhost/mtwoblog.com/2016/01/09/dell-kb216-a-review/#comment-35">
-                Dell KB216 – a review
-              </a>
-            </li>
-            <li className="recentcomments">
-              <span className="comment-author-link">
-                <a
-                  href="http://mtwoblog.com"
-                  rel="external nofollow"
-                  className="url"
-                >
-                  Muhammad Muhsin
-                </a>
-              </span>{" "}
-              on{" "}
-              <a href="http://localhost/mtwoblog.com/2016/01/09/dell-kb216-a-review/#comment-34">
-                Dell KB216 – a review
-              </a>
-            </li>
-          </ul>
-        </section>
+        <RecentPostsWidget />
         <section id="archives-2" className="widget widget_archive">
           <h2 className="widget-title">Archives</h2>{" "}
           <ul>
