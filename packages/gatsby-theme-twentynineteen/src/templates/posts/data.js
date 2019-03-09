@@ -11,11 +11,9 @@ const PostTemplateFragment = `
       }
       
       tags {
-        edges {
-          node {
-            slug
-            name
-          }
+        nodes {
+          slug
+          name
         }
       }
     }
