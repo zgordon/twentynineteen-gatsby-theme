@@ -41,6 +41,36 @@ query GET_TAGS($first:Int $after:String) {
       # The fields needed to create the templates
       name
       slug
+      posts {
+        nodes {
+          id
+          postId
+          title
+          slug
+          excerpt
+          uri
+          author {
+            name
+            avatar(size:50) {
+              url
+            }
+            slug
+          }
+          date
+          categories {
+            nodes {
+              name
+              slug
+            }
+          }
+          tags {
+            nodes {
+              slug
+              name
+            }
+          }
+        }
+      }
     }
   }
 }
