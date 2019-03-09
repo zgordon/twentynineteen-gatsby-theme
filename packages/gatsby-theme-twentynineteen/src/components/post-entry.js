@@ -44,12 +44,9 @@ const PostEntry = ({
           </svg>
           <span className="screen-reader-text">Posted by</span>
           <span className="author vcard">
-            <a
-              className="url fn n"
-              href="http://localhost/mtwoblog.com/author/admin/"
-            >
+            <Link className="url fn n" to={`/blog/author/${author.slug}`}>
               {author.name}
-            </a>
+            </Link>
           </span>
         </span>
         <span className="posted-on">
