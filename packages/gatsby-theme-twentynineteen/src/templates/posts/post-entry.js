@@ -19,10 +19,13 @@ const PostEntry = ({
           />
         </h2>
       </header>
-      <div
-        className="entry-content"
-        dangerouslySetInnerHTML={{ __html: excerpt }}
-      />
+      <div className="entry-content">
+        <div dangerouslySetInnerHTML={{ __html: excerpt }} />
+        <Link to={`/blog/${uri}`} class="more-link">
+          Continue reading
+          <span class="screen-reader-text">{title}</span>
+        </Link>
+      </div>
       <footer className="entry-footer">
         <span className="byline">
           <svg
