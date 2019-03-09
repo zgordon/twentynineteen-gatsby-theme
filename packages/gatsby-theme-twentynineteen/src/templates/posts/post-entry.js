@@ -1,34 +1,10 @@
 import React from "react"
 import { Link } from "gatsby"
-
-function formatDate(date) {
-  var monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ]
-
-  var day = date.getDate()
-  var monthIndex = date.getMonth()
-  var year = date.getFullYear()
-
-  return `${monthNames[monthIndex]} ${day}, ${year}`
-}
+import moment from "moment/moment"
 
 const PostEntry = ({
   post: { id, postId, title, excerpt, uri, author, date, categories },
 }) => {
-  const dateObject = new Date(date)
-  const displayDate = formatDate(dateObject)
   return (
     <article
       className="post type-post status-publish format-standard hentry entry"
@@ -100,7 +76,7 @@ const PostEntry = ({
             rel="bookmark"
           >
             <time className="entry-date published updated" dateTime={date}>
-              {displayDate}
+              {moment(date).format(`MMMM D, YYYY`)}
             </time>
           </a>
         </span>

@@ -9,6 +9,15 @@ const PostTemplateFragment = `
           name
         }
       }
+      
+      tags {
+        edges {
+          node {
+            slug
+            name
+          }
+        }
+      }
     }
 `
 const BlogPreviewFragment = `
@@ -24,6 +33,7 @@ fragment BlogPreviewFragment on Post {
         avatar(size:50) {
           url
         }
+        slug
     }
 }
 `
