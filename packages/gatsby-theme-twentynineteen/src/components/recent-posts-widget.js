@@ -25,6 +25,9 @@ const RecentPostsWidget = props => {
   }, [])
 
   const fetchPosts = async () => {
+    if (typeof window !== "undefined" && window.recentPosts) {
+      setPosts(window.recentPosts)
+    }
     const results = await axios({
       url: `${wordPressUrl}/graphql`,
       method: "post",
@@ -34,6 +37,9 @@ const RecentPostsWidget = props => {
     })
     if (results.data.data.posts) {
       setPosts(results.data.data.posts.nodes)
+      if (typeof window !== "undefined") {
+        window.recentPosts = results.data.data.posts.nodes
+      }
     }
   }
 
