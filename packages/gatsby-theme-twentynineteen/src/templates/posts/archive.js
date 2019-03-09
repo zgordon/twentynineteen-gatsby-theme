@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import Layout from "../../components/layout"
-import PostEntry from "./post-entry"
+import PostEntry from "../../components/post-entry"
 
 const renderPreviousLink = props => {
   const {

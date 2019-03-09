@@ -15,9 +15,9 @@ const categoryTemplate = require.resolve(
  *
  * @type {string}
  */
-const GET_categories = `
+const GET_CATEGORIES = `
 # Define our query variables
-query GET_categories($first:Int $after:String) {
+query GET_CATEGORIES($first:Int $after:String) {
 
   # Ask for categories
   categories(
@@ -132,13 +132,13 @@ module.exports = async ({ actions }) => {
   const fetchCategories = async variables => {
     /**
      * Use Axios to fetch categories using
-     * the GET_categories query and the variables passed in.
+     * the GET_CATEGORIES query and the variables passed in.
      */
     return await axios({
       url: `${config.wordPressUrl}/graphql`,
       method: "post",
       data: {
-        query: GET_categories,
+        query: GET_CATEGORIES,
         variables,
       },
       /**

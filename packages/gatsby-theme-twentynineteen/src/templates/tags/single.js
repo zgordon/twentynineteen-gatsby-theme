@@ -1,6 +1,6 @@
 import React from "react"
 import Layout from "../../components/layout"
-import PostEntry from "../posts/post-entry"
+import PostEntry from "../../components/post-entry"
 
 const SingleTag = props => {
   const {

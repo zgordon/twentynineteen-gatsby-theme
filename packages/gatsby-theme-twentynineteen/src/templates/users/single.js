@@ -2,7 +2,7 @@ import React from "react"
 import Layout from "../../components/layout"
 import PostEntry from "../../components/post-entry"
 
-const SingleCategory = props => {
+const SingleAuthor = props => {
   const {
     pageContext: { name, posts },
   } = props
@@ -10,7 +10,7 @@ const SingleCategory = props => {
     <Layout classNames="archive">
       <header className="page-header">
         <h1 className="page-title">
-          Category Archives: <span className="page-description">{name}</span>
+          Author Archives: <span className="page-description">{name}</span>
         </h1>
       </header>
 
@@ -22,4 +22,4 @@ const SingleCategory = props => {
   )
 }
 
-export default SingleCategory
+export default SingleAuthor
