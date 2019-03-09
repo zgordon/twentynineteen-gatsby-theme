@@ -5,7 +5,18 @@ import Layout from "../../components/layout"
 
 const SinglePost = props => {
   const {
-    pageContext: { id, postId, title, content, date, author, categories, tags },
+    pageContext: {
+      id,
+      postId,
+      title,
+      content,
+      date,
+      author,
+      categories,
+      tags,
+      prev,
+      next,
+    },
   } = props
 
   return (
@@ -197,6 +208,40 @@ const SinglePost = props => {
         </footer>
       </article>
       {/* #post-${ID} */}
+      <nav className="navigation post-navigation" role="navigation">
+        <h2 className="screen-reader-text">Post navigation</h2>
+        <div className="nav-links">
+          {prev && (
+            <div className="nav-previous">
+              <Link to={`/blog/${prev.uri}`} rel="prev">
+                <span className="meta-nav" aria-hidden="true">
+                  Previous Post
+                </span>
+                <span className="screen-reader-text">Previous post:</span>{" "}
+                <br />
+                <span
+                  className="post-title"
+                  dangerouslySetInnerHTML={{ __html: prev.title }}
+                />
+              </Link>
+            </div>
+          )}
+          {next && (
+            <div className="nav-next">
+              <Link to={`/blog/${next.uri}`} rel="next">
+                <span className="meta-nav" aria-hidden="true">
+                  Next Post
+                </span>
+                <span className="screen-reader-text">Next post:</span> <br />
+                <span
+                  className="post-title"
+                  dangerouslySetInnerHTML={{ __html: next.title }}
+                />
+              </Link>
+            </div>
+          )}
+        </div>
+      </nav>
     </Layout>
   )
 }
