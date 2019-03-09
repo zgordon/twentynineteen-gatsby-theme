@@ -21,9 +21,9 @@ const PostEntry = ({
       </header>
       <div className="entry-content">
         <div dangerouslySetInnerHTML={{ __html: excerpt }} />
-        <Link to={`/blog/${uri}`} class="more-link">
+        <Link to={`/blog/${uri}`} className="more-link">
           Continue reading
-          <span class="screen-reader-text">{title}</span>
+          <span className="screen-reader-text">{title}</span>
         </Link>
       </div>
       <footer className="entry-footer">
@@ -99,12 +99,19 @@ const PostEntry = ({
               <path d="M0 0h24v24H0z" fill="none" />
             </svg>
             <span className="screen-reader-text">Posted in</span>
-            <a
-              href="http://localhost/mtwoblog.com/category/uncategorized/"
-              rel="category tag"
-            >
-              {categories.nodes[0].name}
-            </a>
+            {categories.nodes
+              .map(category => (
+                <Link
+                  key={category.name}
+                  to={`/blog/category/${category.slug}`}
+                  rel="category"
+                >
+                  {category.name}
+                </Link>
+              ))
+              .reduce((accu, elem) => {
+                return accu === null ? [elem] : [...accu, ", ", elem]
+              }, null)}
           </span>
         ) : (
           ""
@@ -127,13 +134,9 @@ const PostEntry = ({
             <span className="screen-reader-text">Tags: </span>
             {tags.nodes
               .map(tag => (
-                <a
-                  key={tag.name}
-                  href="http://localhost/mtwoblog.com/tag/accessibility/"
-                  rel="tag"
-                >
+                <Link key={tag.name} to={`/blog/tag/${tag.slug}`} rel="tag">
                   {tag.name}
-                </a>
+                </Link>
               ))
               .reduce((accu, elem) => {
                 return accu === null ? [elem] : [...accu, ", ", elem]

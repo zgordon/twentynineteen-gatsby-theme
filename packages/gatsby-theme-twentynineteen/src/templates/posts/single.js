@@ -1,6 +1,7 @@
 import React from "react"
-import Layout from "../../components/layout"
+import { Link } from "gatsby"
 import moment from "moment/moment"
+import Layout from "../../components/layout"
 
 const SinglePost = props => {
   const {
@@ -162,13 +163,13 @@ const SinglePost = props => {
             <span className="screen-reader-text">Posted in</span>
             {categories.nodes
               .map(category => (
-                <a
+                <Link
                   key={category.name}
-                  href="http://localhost/mtwoblog.com/category/accessibility/"
+                  to={`/blog/category/${category.slug}`}
                   rel="category"
                 >
                   {category.name}
-                </a>
+                </Link>
               ))
               .reduce((accu, elem) => {
                 return accu === null ? [elem] : [...accu, ", ", elem]
@@ -191,13 +192,9 @@ const SinglePost = props => {
             <span className="screen-reader-text">Tags: </span>
             {tags.nodes
               .map(tag => (
-                <a
-                  key={tag.name}
-                  href="http://localhost/mtwoblog.com/tag/accessibility/"
-                  rel="tag"
-                >
+                <Link key={tag.name} to={`/blog/tag/${tag.slug}`} rel="tag">
                   {tag.name}
-                </a>
+                </Link>
               ))
               .reduce((accu, elem) => {
                 return accu === null ? [elem] : [...accu, ", ", elem]

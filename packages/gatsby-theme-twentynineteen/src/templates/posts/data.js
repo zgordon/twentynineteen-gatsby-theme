@@ -7,6 +7,7 @@ const PostTemplateFragment = `
       categories {
         nodes {
           name
+          slug
         }
       }
       
