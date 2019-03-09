@@ -1,6 +1,7 @@
 import React from "react"
-import Layout from "../../components/layout"
 import { Link } from "gatsby"
+import Layout from "../../components/layout"
+import PostEntry from "../../components/post-entry"
 
 const renderPreviousLink = props => {
   const {
@@ -29,7 +30,6 @@ const renderPreviousLink = props => {
         viewBox="0 0 24 24"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
-        xmlns="http://www.w3.org/1999/xlink"
       >
         <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
         <path d="M0 0h24v24H0z" fill="none" />
@@ -70,32 +70,14 @@ const renderNextLink = props => {
 
 const BlogArchive = props => {
   const {
-    pageContext: { nodes, pageNumber, hasNextPage },
+    pageContext: { nodes, pageNumber },
   } = props
 
   return (
     <Layout classNames="home blog hfeed">
       {nodes &&
         nodes.map(post => {
-          const { id, postId, title, excerpt, uri, author } = post
-          return (
-            <article
-              key={id}
-              className="post type-post status-publish format-standard hentry entry"
-              data-id={id}
-              id={`post-preview-${postId}`}
-            >
-              <header className="entry-header">
-                <Link to={`/blog/${uri}`}>
-                  <h2 dangerouslySetInnerHTML={{ __html: title }} />
-                </Link>
-              </header>
-              <div
-                className="entry-content"
-                dangerouslySetInnerHTML={{ __html: excerpt }}
-              />
-            </article>
-          )
+          return <PostEntry key={post.postId} post={post} />
         })}
       <nav className="navigation pagination" role="navigation">
         <h2 className="screen-reader-text">Posts navigation</h2>

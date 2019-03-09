@@ -1,9 +1,9 @@
 import React from "react"
 
-const TagArchive = ({ pageContext: { nodes } }) => {
+const AuthorArchive = ({ pageContext: { nodes } }) => {
   return (
     <div>
-      <h2>Tag Archive</h2>
+      <h2>Author Archive</h2>
       <div>
         {nodes &&
           nodes.map(node => {
@@ -19,4 +19,4 @@ const TagArchive = ({ pageContext: { nodes } }) => {
   )
 }
 
-export default TagArchive
+export default AuthorArchive

@@ -4,6 +4,19 @@ const PostTemplateFragment = `
       postId
       title
       content
+      categories {
+        nodes {
+          name
+          slug
+        }
+      }
+      
+      tags {
+        nodes {
+          slug
+          name
+        }
+      }
     }
 `
 const BlogPreviewFragment = `
@@ -19,6 +32,7 @@ fragment BlogPreviewFragment on Post {
         avatar(size:50) {
           url
         }
+        slug
     }
 }
 `

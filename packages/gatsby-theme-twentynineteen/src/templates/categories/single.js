@@ -2,7 +2,7 @@ import React from "react"
 import Layout from "../../components/layout"
 import PostEntry from "../../components/post-entry"
 
-const SingleTag = props => {
+const SingleCategory = props => {
   const {
     pageContext: { name, posts },
   } = props
@@ -10,7 +10,7 @@ const SingleTag = props => {
     <Layout classNames="archive">
       <header className="page-header">
         <h1 className="page-title">
-          Tag Archives: <span className="page-description">{name}</span>
+          Category Archives: <span className="page-description">{name}</span>
         </h1>
       </header>
 
@@ -22,4 +22,4 @@ const SingleTag = props => {
   )
 }
 
-export default SingleTag
+export default SingleCategory
