@@ -80,6 +80,7 @@ const BlogArchive = props => {
           const { id, postId, title, excerpt, uri, author } = post
           return (
             <article
+              key={id}
               className="post type-post status-publish format-standard hentry entry"
               data-id={id}
               id={`post-preview-${postId}`}
