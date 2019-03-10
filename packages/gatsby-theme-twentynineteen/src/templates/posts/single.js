@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import moment from "moment/moment"
 import Layout from "../../components/layout"
+import SEO from "../../components/seo"
 
 const SinglePost = props => {
   const {
@@ -9,6 +10,7 @@ const SinglePost = props => {
       id,
       postId,
       title,
+      excerpt,
       content,
       date,
       author,
@@ -21,6 +23,7 @@ const SinglePost = props => {
 
   return (
     <Layout>
+      <SEO title={title} description={excerpt} />
       <article
         data-id={id}
         id={`post-${postId}`}
