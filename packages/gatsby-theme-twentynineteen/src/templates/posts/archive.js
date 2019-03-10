@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import Layout from "../../components/layout"
 import PostEntry from "../../components/post-entry"
+import SEO from "../../components/seo"
 
 const renderPreviousLink = props => {
   const {
@@ -75,6 +76,7 @@ const BlogArchive = props => {
 
   return (
     <Layout classNames="home blog hfeed">
+      <SEO title="Blog" description="Welcome to the blog section" />
       {nodes &&
         nodes.map(post => {
           return <PostEntry key={post.postId} post={post} />

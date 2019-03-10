@@ -19,10 +19,12 @@
     "axios": "^0.18.0",
     "gatsby": "^2.1.23",
     "gatsby-plugin-postcss": "^2.0.5",
+    "gatsby-plugin-react-helmet": "^3.0.8",
     "gatsby-plugin-sass": "^2.0.10",
     "gatsby-source-graphql": "^2.0.11",
     "moment": "^2.24.0",
     "node-sass": "^4.11.0",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "react-helmet": "^5.2.0"
   }
 }

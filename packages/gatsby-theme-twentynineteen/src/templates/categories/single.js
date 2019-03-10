@@ -1,6 +1,7 @@
 import React from "react"
 import Layout from "../../components/layout"
 import PostEntry from "../../components/post-entry"
+import SEO from "../../components/seo"
 
 const SingleCategory = props => {
   const {
@@ -8,6 +9,10 @@ const SingleCategory = props => {
   } = props
   return (
     <Layout classNames="archive">
+      <SEO
+        title={`Category - ${name}`}
+        description={`A collection of posts from the ${name} category.`}
+      />
       <header className="page-header">
         <h1 className="page-title">
           Category Archives: <span className="page-description">{name}</span>
