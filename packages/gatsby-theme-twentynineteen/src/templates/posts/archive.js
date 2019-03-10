@@ -76,7 +76,7 @@ const BlogArchive = props => {
 
   return (
     <Layout classNames="home blog hfeed">
-      <SEO title="Blog" description="Welcome to the blog section" />
+      <SEO title="Home" description="Welcome to the blog section" />
       {nodes &&
         nodes.map(post => {
           return <PostEntry key={post.postId} post={post} />
