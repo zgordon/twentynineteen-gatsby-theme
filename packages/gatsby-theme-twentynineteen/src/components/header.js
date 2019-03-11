@@ -1,5 +1,7 @@
-import React from "react"
-import { StaticQuery, graphql, Link } from "gatsby"
+import React from 'react'
+import { StaticQuery, graphql, Link } from 'gatsby'
+
+import Menus from './menus'
 
 const HEADER_QUERY =  graphql`
   query SiteTitleQuery {
@@ -29,6 +31,7 @@ const Header = props => (
               <p className="site-description">
                 {data.site.siteMetadata.description}
               </p>
+              <Menus />
             </div>
             {/* .site-branding */}
           </div>
