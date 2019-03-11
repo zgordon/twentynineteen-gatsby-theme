@@ -5,7 +5,7 @@ import { wordPressUrl } from '../../config';
 import { createLocalLink } from '../utils'
 import MenuButton from '../images/menu-button.svg'
 
-const MENU_QUERY1 = `
+const MENU_QUERY = `
 fragment MenuFields on MenuItem {
   id
   label
@@ -48,22 +48,25 @@ class Menus extends React.Component {
     menuItems: {}
   }
   async componentDidMount() {
-    const menus = await axios({
-      url: `${wordPressUrl}/graphql`,
-      method: 'post',
-      data: {
-        query: MENU_QUERY
-      }
-    })
-
-    const { menuItems } = menus.data.data;
-    console.log(menuItems)
-    this.setState({ menuItems })
+    if (typeof window !== 'undefined' && window.menuItems) {
+      this.setState({ menuItems: window.menuItems })
+    } else {
+      const menus = await axios({
+        url: `${wordPressUrl}/graphql`,
+        method: 'post',
+        data: {
+          query: MENU_QUERY
+        }
+      })
+  
+      const { menuItems } = menus.data.data
+      window.menuItems = menuItems
+      this.setState({ menuItems })
+    }
   }
   
   renderMenuItem(menuItem) {
-    const link = createLocalLink(menuItem.url)
-    debugger
+    // const link = createLocalLink(menuItem.url)
     if (menuItem.childItems && menuItem.childItems.nodes.length) {
       return this.renderSubMenu(menuItem)
     } else {

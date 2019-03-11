@@ -7,8 +7,7 @@
  * @type {{wordPressUrl: string}}
  */
 const config = {
-  // wordPressUrl: `https://mtwoblog.com`,
-  wordPressUrl: `http://localhost/lexcampus`,
+  wordPressUrl: `https://mtwoblog.com`,
 }
 
 module.exports = config
