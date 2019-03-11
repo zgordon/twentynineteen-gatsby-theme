@@ -1,5 +1,5 @@
 const axios = require("axios")
-const config = require("../config")
+// const config = require("../config")
 const categoryTemplate = require.resolve(
   `../src/templates/categories/single.js`
 )
@@ -83,7 +83,7 @@ query GET_CATEGORIES($first:Int $after:String) {
  * @param actions
  * @returns {Promise<void>}
  */
-module.exports = async ({ actions }) => {
+module.exports = async ({ actions }, options) => {
   /**
    * This is the method from Gatsby that we're going
    * to use to create pages in our static site.
@@ -116,13 +116,13 @@ module.exports = async ({ actions }) => {
    * @param variables
    * @returns {Promise<*>}
    */
-  const fetchCategories = async variables => {
+  const fetchCategories = async (variables, options) => {
     /**
      * Use Axios to fetch categories using
      * the GET_CATEGORIES query and the variables passed in.
      */
     return await axios({
-      url: `${config.wordPressUrl}/graphql`,
+      url: `${options.wordPressUrl}/graphql`,
       method: "post",
       data: {
         query: GET_CATEGORIES,
@@ -159,7 +159,7 @@ module.exports = async ({ actions }) => {
       if (hasNextPage) {
         pageNumber++
         console.log(`fetch page ${pageNumber} of categories...`)
-        return fetchCategories({ first: 10, after: endCursor })
+        return fetchCategories({ first: 10, after: endCursor }, options)
       }
 
       /**
@@ -176,19 +176,24 @@ module.exports = async ({ actions }) => {
    * the posts we need to create individual category pages
    * and paginated category archive pages.
    */
-  await fetchCategories({ first: 10, after: null }).then(allCategories => {
-    /**
-     * Map over the allCategories array to create the
-     * single-category pages
-     */
-    allCategories &&
-      allCategories.map(category => {
-        console.log(`create category: ${category.slug}`)
-        createPage({
-          path: `/blog/category/${category.slug}`,
-          component: categoryTemplate,
-          context: category,
+  await fetchCategories({ first: 10, after: null }, options).then(
+    allCategories => {
+      /**
+       * Map over the allCategories array to create the
+       * single-category pages
+       */
+      allCategories &&
+        allCategories.map(category => {
+          console.log(`create category: ${category.slug}`)
+          createPage({
+            path: `/blog/category/${category.slug}`,
+            component: categoryTemplate,
+            context: {
+              ...category,
+              wordPressUrl: options.wordPressUrl,
+            },
+          })
         })
-      })
-  })
+    }
+  )
 }

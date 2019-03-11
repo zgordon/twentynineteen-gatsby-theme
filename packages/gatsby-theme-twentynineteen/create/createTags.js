@@ -1,5 +1,5 @@
 const axios = require("axios")
-const config = require("../config")
+// const config = require("../config")
 const tagTemplate = require.resolve(`../src/templates/tags/single.js`)
 
 /**
@@ -81,7 +81,7 @@ query GET_TAGS($first:Int $after:String) {
  * @param actions
  * @returns {Promise<void>}
  */
-module.exports = async ({ actions }) => {
+module.exports = async ({ actions }, options) => {
   /**
    * This is the method from Gatsby that we're going
    * to use to create pages in our static site.
@@ -120,7 +120,7 @@ module.exports = async ({ actions }) => {
      * the GET_TAGS query and the variables passed in.
      */
     return await axios({
-      url: `${config.wordPressUrl}/graphql`,
+      url: `${options.wordPressUrl}/graphql`,
       method: "post",
       data: {
         query: GET_TAGS,
@@ -157,7 +157,7 @@ module.exports = async ({ actions }) => {
       if (hasNextPage) {
         pageNumber++
         console.log(`fetch page ${pageNumber} of tags...`)
-        return fetchTags({ first: 10, after: endCursor })
+        return fetchTags({ first: 10, after: endCursor }, options)
       }
 
       /**
@@ -174,7 +174,7 @@ module.exports = async ({ actions }) => {
    * the posts we need to create individual tag pages
    * and paginated tag archive pages.
    */
-  await fetchTags({ first: 10, after: null }).then(allTags => {
+  await fetchTags({ first: 10, after: null }, options).then(allTags => {
     /**
      * Map over the allTags array to create the
      * single-tag pages
@@ -185,7 +185,10 @@ module.exports = async ({ actions }) => {
         createPage({
           path: `/blog/tag/${tag.slug}`,
           component: tagTemplate,
-          context: tag,
+          context: {
+            ...tag,
+            wordPressUrl: options.wordPressUrl,
+          },
         })
       })
   })

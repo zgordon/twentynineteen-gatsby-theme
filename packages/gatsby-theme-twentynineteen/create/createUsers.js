@@ -1,5 +1,5 @@
 const axios = require("axios")
-const config = require("../config")
+// const config = require("../config")
 const userTemplate = require.resolve(`../src/templates/users/single.js`)
 
 /**
@@ -81,7 +81,7 @@ query GET_USERS($first:Int $after:String) {
  * @param actions
  * @returns {Promise<void>}
  */
-module.exports = async ({ actions }) => {
+module.exports = async ({ actions }, options) => {
   /**
    * This is the method from Gatsby that we're going
    * to use to create pages in our static site.
@@ -120,7 +120,7 @@ module.exports = async ({ actions }) => {
      * the GET_USERS query and the variables passed in.
      */
     return await axios({
-      url: `${config.wordPressUrl}/graphql`,
+      url: `${options.wordPressUrl}/graphql`,
       method: "post",
       data: {
         query: GET_USERS,
@@ -157,7 +157,7 @@ module.exports = async ({ actions }) => {
       if (hasNextPage) {
         pageNumber++
         console.log(`fetch page ${pageNumber} of users...`)
-        return fetchUsers({ first: 10, after: endCursor })
+        return fetchUsers({ first: 10, after: endCursor }, options)
       }
 
       /**
@@ -174,7 +174,7 @@ module.exports = async ({ actions }) => {
    * the posts we need to create individual user pages
    * and paginated user archive pages.
    */
-  await fetchUsers({ first: 10, after: null }).then(allUsers => {
+  await fetchUsers({ first: 10, after: null }, options).then(allUsers => {
     /**
      * Map over the allUsers array to create the
      * single-user pages
@@ -185,7 +185,10 @@ module.exports = async ({ actions }) => {
         createPage({
           path: `/blog/author/${user.slug}`,
           component: userTemplate,
-          context: user,
+          context: {
+            ...user,
+            wordPressUrl: options.wordPressUrl,
+          },
         })
       })
   })

@@ -1,5 +1,5 @@
 const axios = require("axios")
-const config = require("../config.js")
+// const config = require("../config.js")
 const { PageTemplateFragment } = require("../src/templates/page/data.js")
 const pageTemplate = require.resolve(`../src/templates/page/index.js`)
 
@@ -63,13 +63,13 @@ let pageNumber = 0
  * @param variables
  * @returns {Promise<*>}
  */
-const fetchPages = async variables => {
+const fetchPages = async (variables, options) => {
   /**
    * Use Axios to fetch pages using
    * the GET_PAGES query and the variables passed in.
    */
   return await axios({
-    url: `${config.wordPressUrl}/graphql`,
+    url: `${options.wordPressUrl}/graphql`,
     method: "post",
     data: {
       query: GET_PAGES,
@@ -107,7 +107,7 @@ const fetchPages = async variables => {
     if (hasNextPage) {
       pageNumber++
       console.log(`fetch page ${pageNumber} of pages...`)
-      return fetchPages({ first: 10, after: endCursor })
+      return fetchPages({ first: 10, after: endCursor }, options)
     }
 
     /**
@@ -127,7 +127,7 @@ module.exports = fetchPages
  * @param actions
  * @returns {Promise<void>}
  */
-module.exports = async ({ actions }) => {
+module.exports = async ({ actions }, options) => {
   /**
    * This is the method from Gatsby that we're going
    * to use to create pages in our static site.
@@ -138,7 +138,7 @@ module.exports = async ({ actions }) => {
    * Kick off our `fetchPages` method which will get us all
    * the pages we need to create individual pages.
    */
-  await fetchPages({ first: 10, after: null }).then(allPages => {
+  await fetchPages({ first: 10, after: null }, options).then(allPages => {
     /**
      * Map over the allPages array to create the
      * single pages
@@ -149,7 +149,10 @@ module.exports = async ({ actions }) => {
         createPage({
           path: `/${page.uri}/`,
           component: pageTemplate,
-          context: page,
+          context: {
+            ...page,
+            wordPressUrl: options.wordPressUrl,
+          },
         })
       })
   })

@@ -1,5 +1,5 @@
 const axios = require("axios")
-const config = require("../config.js")
+// const config = require("../config.js")
 const { PostTemplateFragment } = require("../src/templates/posts/data.js")
 const { BlogPreviewFragment } = require("../src/templates/posts/data.js")
 const postTemplate = require.resolve(`../src/templates/posts/single.js`)
@@ -79,13 +79,13 @@ let pageNumber = 0
  * @param variables
  * @returns {Promise<*>}
  */
-const fetchPosts = async variables => {
+const fetchPosts = async (variables, options) => {
   /**
    * Use Axios to fetch posts using
    * the GET_POSTS query and the variables passed in.
    */
   return await axios({
-    url: `${config.wordPressUrl}/graphql`,
+    url: `${options.wordPressUrl}/graphql`,
     method: "post",
     data: {
       query: GET_POSTS,
@@ -145,7 +145,7 @@ const fetchPosts = async variables => {
     if (hasNextPage) {
       pageNumber++
       console.log(`fetch page ${pageNumber} of posts...`)
-      return fetchPosts({ first: 10, after: endCursor })
+      return fetchPosts({ first: 10, after: endCursor }, options)
     }
 
     /**
@@ -165,7 +165,7 @@ module.exports = fetchPosts
  * @param actions
  * @returns {Promise<void>}
  */
-module.exports = async ({ actions }) => {
+module.exports = async ({ actions }, options) => {
   /**
    * This is the method from Gatsby that we're going
    * to use to create pages in our static site.
@@ -177,7 +177,7 @@ module.exports = async ({ actions }) => {
    * the posts we need to create individual post pages
    * and paginated blogroll archive pages.
    */
-  await fetchPosts({ first: 10, after: null }).then(allPosts => {
+  await fetchPosts({ first: 10, after: null }, options).then(allPosts => {
     /**
      * Map over the allPosts array to create the
      * single-post pages
@@ -192,6 +192,7 @@ module.exports = async ({ actions }) => {
             ...post,
             prev: allPosts[index + 1],
             next: allPosts[index - 1],
+            wordPressUrl: options.wordPressUrl,
           },
         })
       })

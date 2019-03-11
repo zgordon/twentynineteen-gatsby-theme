@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
-import { Link } from "gatsby"
+import { Link, StaticQuery } from "gatsby"
 import axios from "axios"
-import { wordPressUrl } from "../../config"
+// import { wordPressUrl } from "../../config"
 
 const RECENT_POSTS_QUERY = `
 query GetRecentPosts {
@@ -14,7 +14,7 @@ query GetRecentPosts {
 }
 `
 
-const RecentPostsWidget = props => {
+const RecentPostsWidgetInner = ({ wordPressUrl }) => {
   //initialize the state
   const [posts, setPosts] = useState([])
 
@@ -56,6 +56,33 @@ const RecentPostsWidget = props => {
           : null}
       </ul>
     </section>
+  )
+}
+
+const RecentPostsWidget = props => {
+  return (
+    <StaticQuery
+      query={graphql`
+        query ThemeOptionQuery {
+          site {
+            _xexperimentalThemes {
+              options {
+                wordPressUrl
+              }
+            }
+          }
+        }
+      `}
+      render={data => {
+        return (
+          <RecentPostsWidgetInner
+            wordPressUrl={
+              data.site._xexperimentalThemes[0].options.wordPressUrl
+            }
+          />
+        )
+      }}
+    />
   )
 }
 
