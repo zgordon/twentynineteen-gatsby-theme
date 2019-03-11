@@ -1,6 +1,5 @@
 const axios = require("axios")
 const config = require("../config")
-const tagArchiveTemplate = require.resolve(`../src/templates/tags/archive.js`)
 const tagTemplate = require.resolve(`../src/templates/tags/single.js`)
 
 /**
@@ -99,16 +98,6 @@ module.exports = async ({ actions }) => {
   const allTags = []
 
   /**
-   * Here we store an array of archivePages. For each xx amount of tags
-   * we want to create a tag archive page so users can browse
-   * chunks of data at a time, much like a traditional
-   * WordPress paginated archive page.
-   *
-   * @type {Array}
-   */
-  const archivePages = []
-
-  /**
    * We need to track the page number so we can output the paginated
    * archive template with the appropriate path.
    *
@@ -152,31 +141,6 @@ module.exports = async ({ actions }) => {
           },
         },
       } = data
-
-      /**
-       * Define the path for the paginated archive page.
-       * This is the url the page will live at
-       * @type {string}
-       */
-      const tagArchivePath = !variables.after
-        ? `/tags/`
-        : `/tags/page/${pageNumber}`
-
-      /**
-       * Add config for the archivePage to the archivePages array
-       * for creating later
-       *
-       * @type {{path: string, component: string, context: {nodes: *, pageNumber: number, hasNextPage: *}}}
-       */
-      archivePages[pageNumber] = {
-        path: tagArchivePath,
-        component: tagArchiveTemplate,
-        context: {
-          nodes,
-          pageNumber,
-          hasNextPage,
-        },
-      }
 
       /**
        * Map over the tags for later creation
@@ -223,23 +187,6 @@ module.exports = async ({ actions }) => {
           component: tagTemplate,
           context: tag,
         })
-      })
-
-    /**
-     * Map over the `archivePages` array to create the
-     * paginated tag archive pages
-     */
-    archivePages &&
-      archivePages.map(archivePage => {
-        console.log(`create tag archive page ${archivePage.context.pageNumber}`)
-
-        /**
-         * @todo: Need to actually make these paginated
-         * archive pages, which means we'll have to
-         * fetchPosts for each tag, much like we did
-         * for the posts/archive template.
-         */
-        createPage(archivePage)
       })
   })
 }

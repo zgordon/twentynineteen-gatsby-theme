@@ -1,6 +1,5 @@
 const axios = require("axios")
 const config = require("../config")
-const userArchiveTemplate = require.resolve(`../src/templates/users/archive.js`)
 const userTemplate = require.resolve(`../src/templates/users/single.js`)
 
 /**
@@ -99,16 +98,6 @@ module.exports = async ({ actions }) => {
   const allUsers = []
 
   /**
-   * Here we store an array of archivePages. For each xx amount of users
-   * we want to create a user archive page so users can browse
-   * chunks of data at a time, much like a traditional
-   * WordPress paginated archive page.
-   *
-   * @type {Array}
-   */
-  const archivePages = []
-
-  /**
    * We need to track the page number so we can output the paginated
    * archive template with the appropriate path.
    *
@@ -152,31 +141,6 @@ module.exports = async ({ actions }) => {
           },
         },
       } = data
-
-      /**
-       * Define the path for the paginated archive page.
-       * This is the url the page will live at
-       * @type {string}
-       */
-      const userArchivePath = !variables.after
-        ? `/authors/`
-        : `/authors/page/${pageNumber}`
-
-      /**
-       * Add config for the archivePage to the archivePages array
-       * for creating later
-       *
-       * @type {{path: string, component: string, context: {nodes: *, pageNumber: number, hasNextPage: *}}}
-       */
-      archivePages[pageNumber] = {
-        path: userArchivePath,
-        component: userArchiveTemplate,
-        context: {
-          nodes,
-          pageNumber,
-          hasNextPage,
-        },
-      }
 
       /**
        * Map over the users for later creation
@@ -223,25 +187,6 @@ module.exports = async ({ actions }) => {
           component: userTemplate,
           context: user,
         })
-      })
-
-    /**
-     * Map over the `archivePages` array to create the
-     * paginated user archive pages
-     */
-    archivePages &&
-      archivePages.map(archivePage => {
-        console.log(
-          `create user archive page ${archivePage.context.pageNumber}`
-        )
-
-        /**
-         * @todo: Need to actually make these paginated
-         * archive pages, which means we'll have to
-         * fetchPosts for each user, much like we did
-         * for the posts/archive template.
-         */
-        createPage(archivePage)
       })
   })
 }

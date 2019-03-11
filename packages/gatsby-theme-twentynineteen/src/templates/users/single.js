@@ -1,6 +1,7 @@
 import React from "react"
 import Layout from "../../components/layout"
 import PostEntry from "../../components/post-entry"
+import SEO from "../../components/seo"
 
 const SingleAuthor = props => {
   const {
@@ -8,6 +9,10 @@ const SingleAuthor = props => {
   } = props
   return (
     <Layout classNames="archive">
+      <SEO
+        title={`Author - ${name}`}
+        description={`A collection of posts written by ${name}.`}
+      />
       <header className="page-header">
         <h1 className="page-title">
           Author Archives: <span className="page-description">{name}</span>

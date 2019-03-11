@@ -183,12 +183,16 @@ module.exports = async ({ actions }) => {
      * single-post pages
      */
     allPosts &&
-      allPosts.map(post => {
+      allPosts.map((post, index) => {
         console.log(`create post: ${post.uri}`)
         createPage({
           path: `/blog/${post.uri}/`,
           component: postTemplate,
-          context: post,
+          context: {
+            ...post,
+            prev: allPosts[index + 1],
+            next: allPosts[index - 1],
+          },
         })
       })
 
