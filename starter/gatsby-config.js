@@ -8,7 +8,7 @@ module.exports = {
   __experimentalThemes: [
     {
       resolve: "gatsby-theme-twentynineteen",
-      options: { wordPressUrl: `https://mtwoblog.com` }
+      options: { wordPressUrl: `http://localhost/mtwoblog.com` }
     }
   ]
 };
