@@ -1,7 +1,8 @@
 import React from "react"
-import { Link, graphql, navigate } from "gatsby"
-import Layout from "../components/layout"
-import PostEntry from "../components/post-entry"
+import { Link, graphql } from "gatsby"
+import Layout from "../../components/layout"
+import PostEntry from "../../components/post-entry"
+import SEO from "../../components/seo"
 
 const renderPreviousLink = props => {
   const {
@@ -30,7 +31,6 @@ const renderPreviousLink = props => {
         viewBox="0 0 24 24"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
-        xmlns="http://www.w3.org/1999/xlink"
       >
         <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
         <path d="M0 0h24v24H0z" fill="none" />
@@ -69,31 +69,29 @@ const renderNextLink = props => {
   }
 }
 
-const IndexPage = props => {
+const BlogArchive = props => {
   const {
     data,
-    location,
     pageContext: { pageNumber },
   } = props
+  console.log('id', data.wpgraphql.posts.nodes)
 
   return (
-    <Layout location={location} classNames="home blog hfeed">
-      <div>
-        {data &&
-          data.wpgraphql &&
-          data.wpgraphql.posts.nodes.map(post => (
-            <div key={post.id}>
-              <PostEntry post={post} />
-            </div>
-          ))}
-        <nav className="navigation pagination" role="navigation">
-          <h2 className="screen-reader-text">Posts navigation</h2>
-          <div className="nav-links">
-            {renderPreviousLink(props)}
-            <span aria-current="page" className="page-numbers current">
-              {pageNumber}
-            </span>
-            {/*             
+    <Layout classNames="home blog hfeed">
+      <SEO title="Home" description="Welcome to the Twenty Nineteen Theme." />
+      {data &&
+        data.wpgraphql &&
+        data.wpgraphql.posts.nodes.map(post => (
+          <PostEntry key={post.id} post={post} />
+      ))}
+      <nav className="navigation pagination" role="navigation">
+        <h2 className="screen-reader-text">Posts navigation</h2>
+        <div className="nav-links">
+          {renderPreviousLink(props)}
+          <span aria-current="page" className="page-numbers current">
+            {pageNumber}
+          </span>
+          {/*             
             <a
               className="page-numbers"
               href="http://localhost/mtwoblog.com/page/2/"
@@ -106,15 +104,14 @@ const IndexPage = props => {
             >
               3
             </a> */}
-            {renderNextLink(props)}
-          </div>
-        </nav>
-      </div>
+          {renderNextLink(props)}
+        </div>
+      </nav>
     </Layout>
   )
 }
 
-export default IndexPage
+export default BlogArchive
 
 export const query = graphql`
   query GET_POSTS($ids: [ID]) {

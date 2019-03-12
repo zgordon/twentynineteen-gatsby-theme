@@ -1,26 +1,48 @@
-const postTemplate = require.resolve(`../src/templates/post.js`)
-const blogTemplate = require.resolve(`../src/templates/blog.js`)
+const {
+  PostTemplateFragment,
+  BlogPreviewFragment,
+} = require(`../src/templates/posts/data.js`)
+const postTemplate = require.resolve(`../src/templates/posts/single.js`)
+const blogTemplate = require.resolve(`../src/templates/posts/archive.js`)
 
 const GET_POSTS = `
-query GET_POSTS($first:Int $after:String){
-  wpgraphql {
-    posts(
-      first: $first 
-      after:$after
-    ) {
-      pageInfo {
-        endCursor
-        hasNextPage
+  # Define our query variables
+  query GET_POSTS($first:Int $after:String) {
+    wpgraphql {
+      # Ask for posts
+      posts(
+          # Ask for the first XX number of posts
+          first: $first 
+          
+          # A Cursor to where in the dataset our query should start
+          # and get items _after_ that point
+          after:$after
+      ) {
+          # In response, we'll want pageInfo so we know if we need
+          # to fetch more posts or not.
+          pageInfo {
+              # If true, we need to ask for more data.
+              hasNextPage
+              
+              # This cursor will be used for the value for $after
+              # if we need to ask for more data
+              endCursor
+          } 
+          nodes {
+              uri
+              
+              # This is the fragment used for the Post Template
+              ...PostTemplateFragment
+              
+              #This is the fragment used for the blog preview on archive pages
+              ...BlogPreviewFragment
+          }
       }
-      nodes {
-        id
-        uri
-        postId
-        title
-      }
-    }
   }
-}
+  }
+  # Here we make use of the imported fragments which are referenced above
+  ${PostTemplateFragment}
+  ${BlogPreviewFragment}
 `
 
 /**
@@ -104,8 +126,8 @@ module.exports = async ({ actions, graphql }) => {
         component: blogTemplate,
         context: {
           ids: nodeIds,
-          nodes,
-          pageNumber: pageNumber + 1,
+          // nodes,
+          pageNumber,
           hasNextPage,
         },
       }

@@ -41,13 +41,10 @@ const allPages = []
  */
 let pageNumber = 0
 
-
-
-
 /**
  * This is the export which Gatbsy will use to process.
  *
- * @param actions
+ * @param { actions, graphql }
  * @returns {Promise<void>}
  */
 module.exports = async ({ actions, graphql }) => {
