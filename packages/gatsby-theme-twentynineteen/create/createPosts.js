@@ -87,8 +87,7 @@ module.exports = async ({ actions, graphql }) => {
 
   const fetchPosts = async variables => {
     /**
-     * Use Axios to fetch posts using
-     * the GET_POSTS query and the variables passed in.
+     * Fetch posts using the GET_POSTS query and the variables passed in.
      */
     return await graphql(GET_POSTS, variables).then(({ data }) => {
       /**

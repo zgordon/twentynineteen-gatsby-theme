@@ -1,8 +1,5 @@
-const autoprefixer = require("autoprefixer")
-
 module.exports = ({ wordPressUrl }) => ({
   plugins: [
-    `gatsby-plugin-sass`,
     {
       resolve: `gatsby-source-graphql`,
       options: {
@@ -14,15 +11,6 @@ module.exports = ({ wordPressUrl }) => ({
         url: `${wordPressUrl}/graphql`,
       },
     },
-    {
-      resolve: "gatsby-plugin-postcss",
-      options: {
-        postCssPlugins: [
-          autoprefixer({
-            browsers: ["last 2 versions"],
-          }),
-        ],
-      },
-    },
+    `gatsby-plugin-sass`,
   ],
 })

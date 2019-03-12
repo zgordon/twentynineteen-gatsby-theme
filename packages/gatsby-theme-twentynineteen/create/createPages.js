@@ -78,8 +78,7 @@ module.exports = async ({ actions, graphql }) => {
    */
   const fetchPages = async variables => {
     /**
-     * Use Axios to fetch pages using
-     * the GET_PAGES query and the variables passed in.
+     * Fetch pages using the GET_PAGES query and the variables passed in.
      */
     return await graphql(GET_PAGES, variables).then(({ data }) => {
       /**
@@ -93,7 +92,7 @@ module.exports = async ({ actions, graphql }) => {
           },
         },
       } = data
-  
+
       /**
        * Map over the pages for later creation
        */
@@ -101,7 +100,7 @@ module.exports = async ({ actions, graphql }) => {
         nodes.map(pages => {
           allPages.push(pages)
         })
-  
+
       /**
        * If there's another page, fetch more
        * so we can have all the data we need.
@@ -111,7 +110,7 @@ module.exports = async ({ actions, graphql }) => {
         console.log(`fetch page ${pageNumber} of pages...`)
         return fetchPages({ first: 10, after: endCursor })
       }
-  
+
       /**
        * Once we're done, return all the pages
        * so we can create the necessary pages with
