@@ -5,7 +5,6 @@ import moment from "moment/moment"
 const PostEntry = ({
   post: { id, postId, title, excerpt, uri, author, date, categories, tags },
 }) => {
-  console.log('post', id, postId, title, excerpt, uri, author, date, categories, tags)
   return (
     <article
       className="post type-post status-publish format-standard hentry entry"

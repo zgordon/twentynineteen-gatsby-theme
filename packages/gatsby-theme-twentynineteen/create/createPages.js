@@ -1,28 +1,41 @@
-const pageTemplate = require.resolve(`../src/templates/page.js`)
+const { PageTemplateFragment } = require(`../src/templates/page/data.js`)
+const pageTemplate = require.resolve(`../src/templates/page/index.js`)
 
 const GET_PAGES = `
-  query GET_PAGES($first:Int $after:String){
+  # Define our query variables
+  query GET_PAGES($first:Int $after:String) {
     wpgraphql {
+      # Ask for pages
       pages(
-        first: $first 
-        after: $after
-        where: {
-          parent: null
-        }
+          # Ask for the first XX number of pages
+          first: $first 
+          
+          # A Cursor to where in the dataset our query should start
+          # and get items _after_ that point
+          after:$after
       ) {
-        pageInfo {
-          endCursor
-          hasNextPage
-        }
-        nodes {
-          id
-          uri
-          pageId
-          title
-        }
+          # In response, we'll want pageInfo so we know if we need
+          # to fetch more pages or not.
+          pageInfo {
+              # If true, we need to ask for more data.
+              hasNextPage
+              
+              # This cursor will be used for the value for $after
+              # if we need to ask for more data
+              endCursor
+          } 
+          nodes {
+              uri
+              
+              # This is the fragment used for the pages Template
+              ...PageTemplateFragment
+              
+          }
       }
     }
   }
+  # Here we make use of the imported fragments which are referenced above
+  ${PageTemplateFragment}
 `
 
 /**

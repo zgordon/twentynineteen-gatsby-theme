@@ -1,20 +1,22 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Layout from "../components/layout"
+import Layout from "../../components/layout"
+import SEO from "../../components/seo"
 
 const SinglePage = props => {
   const {
-    pageContext: { id, postId },
-    location,
-    data: {
-      wpgraphql: { page },
-    },
+    pageContext: { id, postId, title, content, excerpt },
+    // location,
+    // data: {
+    //   wpgraphql: { page },
+    // },
   } = props
 
-  const { title, content } = page
+  // const { title, content } = page
 
   return (
-    <Layout location={location}>
+    <Layout>
+      <SEO title={title} description={excerpt} />
       <article
         data-id={id}
         id={`post-${postId}`}
@@ -47,6 +49,7 @@ export const pageQuery = graphql`
       page(id: $id) {
         title
         content
+        excerpt
         uri
       }
     }
