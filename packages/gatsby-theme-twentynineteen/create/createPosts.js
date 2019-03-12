@@ -1,5 +1,5 @@
-const postTemplate = require.resolve(`../src/templates/post.js`)
-const blogTemplate = require.resolve(`../src/templates/blog.js`)
+const postTemplate = require.resolve(`../src/templates/posts/single.js`)
+const blogTemplate = require.resolve(`../src/templates/posts/archive.js`)
 
 const GET_POSTS = `
 query GET_POSTS($first:Int $after:String){

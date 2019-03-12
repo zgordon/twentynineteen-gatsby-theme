@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, graphql, navigate } from "gatsby"
-import Layout from "../components/layout"
-import PostEntry from "../components/post-entry"
+import Layout from "../../components/layout"
+import PostEntry from "../../components/post-entry"
 
 const renderPreviousLink = props => {
   const {
