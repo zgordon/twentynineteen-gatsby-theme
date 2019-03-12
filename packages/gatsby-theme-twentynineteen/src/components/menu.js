@@ -14,7 +14,7 @@ const MENU_QUERY = graphql`
 
   query GET_MENU_ITEMS {
     wpgraphql {
-      menuItems(where: { location: MENU_1 }) {
+      menuItems(where: { location: PRIMARY }) {
         nodes {
           ...MenuFields
           childItems {
@@ -69,7 +69,10 @@ const renderMenuItem = menuItem => {
 
 const renderSubMenu = menuItem => {
   return (
-    <li className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-100 menu-item-has-children">
+    <li
+      key={menuItem.label}
+      className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-100 menu-item-has-children"
+    >
       <Link to="/">{menuItem.label}</Link>
       <button className="submenu-expand" tabIndex="-1">
         <svg

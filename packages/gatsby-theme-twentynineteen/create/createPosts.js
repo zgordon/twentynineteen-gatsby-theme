@@ -127,7 +127,7 @@ module.exports = async ({ actions, graphql }) => {
         context: {
           ids: nodeIds,
           // nodes,
-          pageNumber,
+          pageNumber: pageNumber + 1,
           hasNextPage,
         },
       }
