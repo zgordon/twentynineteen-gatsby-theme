@@ -82,7 +82,6 @@ module.exports = async ({ actions, graphql }) => {
      * the GET_PAGES query and the variables passed in.
      */
     return await graphql(GET_PAGES, variables).then(({ data }) => {
-      console.log("data: ", data)
       /**
        * Extract the data from the GraphQL query results
        */
