@@ -6,6 +6,7 @@ import SEO from "../../components/seo"
 
 const SinglePost = props => {
   const {
+    pageContext: { prev, next, },
     data: {
       wpgraphql: { post },
     },
@@ -21,9 +22,13 @@ const SinglePost = props => {
     author,
     categories,
     tags,
-    prev,
-    next,
   } = post
+
+  console.log('pppppp', id,
+    postId,
+    title,
+    prev,
+    next,)
 
   return (
     <Layout>
