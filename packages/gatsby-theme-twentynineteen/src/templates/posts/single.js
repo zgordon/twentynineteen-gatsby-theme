@@ -24,12 +24,6 @@ const SinglePost = props => {
     tags,
   } = post
 
-  console.log('pppppp', id,
-    postId,
-    title,
-    prev,
-    next,)
-
   return (
     <Layout>
       <SEO title={title} description={excerpt} />
