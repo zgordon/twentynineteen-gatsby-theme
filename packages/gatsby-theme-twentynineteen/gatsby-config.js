@@ -1,7 +1,6 @@
 const autoprefixer = require("autoprefixer")
-const { wordPressUrl } = require('./config');
 
-module.exports = {
+module.exports = ({ wordPressUrl }) => ({
   plugins: [
     `gatsby-plugin-sass`,
     {
@@ -13,7 +12,7 @@ module.exports = {
         fieldName: `wpgraphql`,
         // Url to query from
         url: `${wordPressUrl}/graphql`,
-      }
+      },
     },
     {
       resolve: "gatsby-plugin-postcss",
@@ -26,4 +25,4 @@ module.exports = {
       },
     },
   ],
-}
+})
