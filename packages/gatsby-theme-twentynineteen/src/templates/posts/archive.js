@@ -74,7 +74,6 @@ const BlogArchive = props => {
     data,
     pageContext: { pageNumber },
   } = props
-  console.log('id', data.wpgraphql.posts.nodes)
 
   return (
     <Layout classNames="home blog hfeed">

@@ -52,7 +52,6 @@ const createLocalLink = url => {
 
 const renderMenuItem = menuItem => {
   const link = createLocalLink(menuItem.url)
-  console.log("link", link)
   if (menuItem.childItems && menuItem.childItems.nodes.length) {
     return renderSubMenu(menuItem)
   } else {

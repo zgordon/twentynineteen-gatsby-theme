@@ -23,10 +23,10 @@ const CategoriesWidget = () => (
         <section id="categories-2" className="widget widget_categories">
           <h2 className="widget-title">Categories</h2>
           <ul>
-            {categories.length
+            {categories.nodes.length
               ? categories.nodes.map(category => (
                   <li key={category.slug}>
-                    <Link to={`/blog/${category.slug}`}>{category.name}</Link>
+                    <Link to={`/blog/category/${category.slug}`}>{category.name}</Link>
                   </li>
                 ))
               : null}
