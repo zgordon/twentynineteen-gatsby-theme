@@ -6,13 +6,12 @@ import SEO from "../../components/seo"
 
 const SinglePost = props => {
   const {
-    location,
     data: {
       wpgraphql: { post },
     },
   } = props
 
-  const { 
+  const {
     id,
     postId,
     title,
@@ -23,7 +22,7 @@ const SinglePost = props => {
     categories,
     tags,
     prev,
-    next, 
+    next,
   } = post
 
   return (
