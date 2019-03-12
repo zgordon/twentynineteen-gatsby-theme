@@ -1,4 +1,3 @@
-const tagArchiveTemplate = require.resolve(`../src/templates/tags/archive.js`)
 const tagTemplate = require.resolve(`../src/templates/tags/single.js`)
 
 module.exports = async ({ actions, graphql }) => {

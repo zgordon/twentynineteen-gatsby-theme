@@ -3,25 +3,25 @@ import Layout from "../../components/layout"
 import PostEntry from "../../components/post-entry"
 import SEO from "../../components/seo"
 
-const SingleTag = props => {
-    const {
-      data: {
-        wpgraphql: { 
-          tag: {
-            name, posts
-          } 
-        },
+const SingleAuthor = props => {
+  const {
+    data: {
+      wpgraphql: { 
+        user: {
+          name, posts
+        }
       },
-    } = props
+    },
+  } = props
   return (
     <Layout classNames="archive">
       <SEO
-        title={`Tag - ${name}`}
-        description={`A collection of posts from the ${name} tag.`}
+        title={`Author - ${name}`}
+        description={`A collection of posts written by ${name}.`}
       />
       <header className="page-header">
         <h1 className="page-title">
-          Tag Archives: <span className="page-description">{name}</span>
+          Author Archives: <span className="page-description">{name}</span>
         </h1>
       </header>
 
@@ -33,16 +33,17 @@ const SingleTag = props => {
   )
 }
 
-export default SingleTag
+export default SingleAuthor
 
 export const pageQuery = graphql`
-  query GET_TAG($id: ID!) {
+  query user($id: ID!) {
     wpgraphql {
-      tag(id: $id) {
-        id
+      user(id: $id) {
         name
-        slug
-        posts(first: 100) {
+        avatar {
+          url
+        }
+        posts {
           nodes {
             ...PostEntryFragment
           }
