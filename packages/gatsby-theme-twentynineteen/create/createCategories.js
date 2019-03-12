@@ -2,14 +2,6 @@ const categoryTemplate = require.resolve(
   `../src/templates/categories/single.js`
 )
 
-/**
- * This is the query that is used to fetch the categories to
- * create the single category and category archive pages.
- *
- * @todo: define/use fragments for each template...
- *
- * @type {string}
- */
 module.exports = async ({ actions, graphql }) => {
   const GET_CATEGORIES = `
   query GET_CATEGORIES($first: Int) {
