@@ -1,4 +1,7 @@
-const { PostTemplateFragment, BlogPreviewFragment } = require(`../src/templates/posts/data.js`)
+const {
+  PostTemplateFragment,
+  BlogPreviewFragment,
+} = require(`../src/templates/posts/data.js`)
 const postTemplate = require.resolve(`../src/templates/posts/single.js`)
 const blogTemplate = require.resolve(`../src/templates/posts/archive.js`)
 
@@ -105,7 +108,7 @@ module.exports = async ({ actions, graphql }) => {
        * This is the url the page will live at
        * @type {string}
        */
-      const blogPagePath = !variables.after ? `/` : `/page/${pageNumber}`
+      const blogPagePath = !variables.after ? `/` : `/page/${pageNumber + 1}`
 
       /**
        * The IDs of the posts which were got from GraphQL.
