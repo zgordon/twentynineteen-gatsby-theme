@@ -1,11 +1,10 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
+import { Link } from "gatsby"
 import moment from "moment/moment"
 import Layout from "../../components/layout"
 import SEO from "../../components/seo"
 
 const SinglePost = props => {
-  console.log('post', props)
   const {
     pageContext: {
       id,
@@ -21,18 +20,6 @@ const SinglePost = props => {
       next,
     },
   } = props
-
-  // const {
-  //   id,
-  //   postId,
-  //   title,
-  //   excerpt,
-  //   content,
-  //   date,
-  //   author,
-  //   categories,
-  //   tags,
-  // } = post
 
   return (
     <Layout>
