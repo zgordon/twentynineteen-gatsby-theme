@@ -25,5 +25,9 @@ If this is your first time using Yarn workspaces, [check out the docs](https://y
 - https://www.gatsbyjs.org/packages/gatsby-plugin-page-creator/
 - https://gatsby-mdx.netlify.com/getting-started
 - https://www.gatsbyjs.org/packages/gatsby-source-filesystem/
-- https://twitter.com/4lpine
-- https://twitter.com/jlengstorf
+
+## Team members
+- https://twitter.com/zgordon
+- https://twitter.com/muhsinlk
+- https://twitter.com/jasonbahl
+- https://twitter.com/hussain_thaj/
