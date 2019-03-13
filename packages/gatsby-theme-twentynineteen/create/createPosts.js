@@ -176,8 +176,8 @@ module.exports = async ({ actions, graphql }) => {
           component: postTemplate,
           context: {
             ...post,
-            prev: allPosts[index + 1],
-            next: allPosts[index - 1],
+            prev: allPosts[index - 1],
+            next: allPosts[index + 1],
           },
         })
       })
