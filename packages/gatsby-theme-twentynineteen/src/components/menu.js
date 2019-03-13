@@ -60,7 +60,7 @@ const renderMenuItem = menuItem => {
         key={menuItem.id}
         className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-100"
       >
-        <Link to={createLocalLink(menuItem.url)}>{menuItem.label}</Link>
+        <Link to={link}>{menuItem.label}</Link>
       </li>
     )
   }
