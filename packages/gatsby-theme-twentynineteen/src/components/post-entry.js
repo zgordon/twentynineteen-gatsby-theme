@@ -149,33 +149,33 @@ const PostEntry = ({
 
 export default PostEntry
 
-export const query = graphql`
-  fragment PostEntryFragment on WPGraphQL_Post {
-    id
-    title
-    uri
-    slug
-    date
-    content
-    excerpt
-    author {
-      name
-      slug
-      avatar(size: 100) {
-        url
-      }
-    }
-    tags {
-      nodes {
-        slug
-        name
-      }
-    }
-    categories {
-      nodes {
-        slug
-        name
-      }
-    }
-  }
-`
+// export const query = graphql`
+//   fragment PostEntryFragment on WPGraphQL_Post {
+//     id
+//     title
+//     uri
+//     slug
+//     date
+//     content
+//     excerpt
+//     author {
+//       name
+//       slug
+//       avatar(size: 100) {
+//         url
+//       }
+//     }
+//     tags {
+//       nodes {
+//         slug
+//         name
+//       }
+//     }
+//     categories {
+//       nodes {
+//         slug
+//         name
+//       }
+//     }
+//   }
+// `

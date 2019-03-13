@@ -71,17 +71,15 @@ const renderNextLink = props => {
 
 const BlogArchive = props => {
   const {
-    data,
-    pageContext: { pageNumber },
+    pageContext: { nodes, pageNumber },
   } = props
 
   return (
     <Layout classNames="home blog hfeed">
       <SEO title="Home" description="Welcome to the Twenty Nineteen Theme." />
-      {data &&
-        data.wpgraphql &&
-        data.wpgraphql.posts.nodes.map(post => (
-          <PostEntry key={post.id} post={post} />
+      {nodes &&
+        nodes.map(post => (
+          <PostEntry key={post.postId} post={post} />
       ))}
       <nav className="navigation pagination" role="navigation">
         <h2 className="screen-reader-text">Posts navigation</h2>
@@ -112,14 +110,14 @@ const BlogArchive = props => {
 
 export default BlogArchive
 
-export const query = graphql`
-  query GET_POSTS($ids: [ID]) {
-    wpgraphql {
-      posts(where: { in: $ids }) {
-        nodes {
-          ...PostEntryFragment
-        }
-      }
-    }
-  }
-`
+// export const query = graphql`
+//   query GET_POSTS($ids: [ID]) {
+//     wpgraphql {
+//       posts(where: { in: $ids }) {
+//         nodes {
+//           ...PostEntryFragment
+//         }
+//       }
+//     }
+//   }
+// `

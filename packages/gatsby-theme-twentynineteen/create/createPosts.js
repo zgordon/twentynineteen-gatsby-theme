@@ -125,7 +125,7 @@ module.exports = async ({ actions, graphql }) => {
         component: blogTemplate,
         context: {
           ids: nodeIds,
-          // nodes,
+          nodes,
           pageNumber: pageNumber + 1,
           hasNextPage,
         },

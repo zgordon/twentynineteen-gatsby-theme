@@ -5,24 +5,34 @@ import Layout from "../../components/layout"
 import SEO from "../../components/seo"
 
 const SinglePost = props => {
+  console.log('post', props)
   const {
-    pageContext: { prev, next, },
-    data: {
-      wpgraphql: { post },
+    pageContext: {
+      id,
+      postId,
+      title,
+      excerpt,
+      content,
+      date,
+      author,
+      categories,
+      tags,
+      prev,
+      next,
     },
   } = props
 
-  const {
-    id,
-    postId,
-    title,
-    excerpt,
-    content,
-    date,
-    author,
-    categories,
-    tags,
-  } = post
+  // const {
+  //   id,
+  //   postId,
+  //   title,
+  //   excerpt,
+  //   content,
+  //   date,
+  //   author,
+  //   categories,
+  //   tags,
+  // } = post
 
   return (
     <Layout>
@@ -254,34 +264,34 @@ const SinglePost = props => {
 
 export default SinglePost
 
-export const pageQuery = graphql`
-  query GET_POST($id: ID!) {
-    wpgraphql {
-      post(id: $id) {
-        title
-        content
-        excerpt
-        uri
-        author {
-          name
-          slug
-          avatar {
-            url
-          }
-        }
-        tags {
-          nodes {
-            name
-            link
-          }
-        }
-        categories {
-          nodes {
-            name
-            link
-          }
-        }
-      }
-    }
-  }
-`
+// export const pageQuery = graphql`
+//   query GET_POST($id: ID!) {
+//     wpgraphql {
+//       post(id: $id) {
+//         title
+//         content
+//         excerpt
+//         uri
+//         author {
+//           name
+//           slug
+//           avatar {
+//             url
+//           }
+//         }
+//         tags {
+//           nodes {
+//             name
+//             link
+//           }
+//         }
+//         categories {
+//           nodes {
+//             name
+//             link
+//           }
+//         }
+//       }
+//     }
+//   }
+// `
