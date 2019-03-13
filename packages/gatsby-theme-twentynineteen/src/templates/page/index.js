@@ -36,16 +36,3 @@ const SinglePage = props => {
 }
 
 export default SinglePage
-
-// export const pageQuery = graphql`
-//   query GET_PAGE($id: ID!) {
-//     wpgraphql {
-//       page(id: $id) {
-//         title
-//         content
-//         excerpt
-//         uri
-//       }
-//     }
-//   }
-// `

@@ -110,14 +110,3 @@ const BlogArchive = props => {
 
 export default BlogArchive
 
-// export const query = graphql`
-//   query GET_POSTS($ids: [ID]) {
-//     wpgraphql {
-//       posts(where: { in: $ids }) {
-//         nodes {
-//           ...PostEntryFragment
-//         }
-//       }
-//     }
-//   }
-// `

@@ -30,20 +30,3 @@ const SingleCategory = props => {
 }
 
 export default SingleCategory
-
-// export const pageQuery = graphql`
-//   query GET_CATEGORY($id: ID!) {
-//     wpgraphql {
-//       category(id: $id) {
-//         id
-//         name
-//         slug
-//         posts(first: 100) {
-//           nodes {
-//             ...PostEntryFragment
-//           }
-//         }
-//       }
-//     }
-//   }
-// `

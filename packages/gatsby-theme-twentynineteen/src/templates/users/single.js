@@ -28,21 +28,3 @@ const SingleAuthor = props => {
 }
 
 export default SingleAuthor
-
-// export const pageQuery = graphql`
-//   query user($id: ID!) {
-//     wpgraphql {
-//       user(id: $id) {
-//         name
-//         avatar {
-//           url
-//         }
-//         posts {
-//           nodes {
-//             ...PostEntryFragment
-//           }
-//         }
-//       }
-//     }
-//   }
-// `

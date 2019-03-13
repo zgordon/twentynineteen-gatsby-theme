@@ -7,7 +7,7 @@ const SingleTag = props => {
   const {
     pageContext: { name, posts }
   } = props
-  
+
   return (
     <Layout classNames="archive">
       <SEO
@@ -29,20 +29,3 @@ const SingleTag = props => {
 }
 
 export default SingleTag
-
-// export const pageQuery = graphql`
-//   query GET_TAG($id: ID!) {
-//     wpgraphql {
-//       tag(id: $id) {
-//         id
-//         name
-//         slug
-//         posts(first: 100) {
-//           nodes {
-//             ...PostEntryFragment
-//           }
-//         }
-//       }
-//     }
-//   }
-// `
