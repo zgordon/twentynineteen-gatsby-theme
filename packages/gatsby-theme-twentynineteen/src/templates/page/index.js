@@ -5,14 +5,8 @@ import SEO from "../../components/seo"
 
 const SinglePage = props => {
   const {
-    pageContext: { id, postId, title, content, excerpt },
-    // location,
-    // data: {
-    //   wpgraphql: { page },
-    // },
+    pageContext: { id, postId, title, content, excerpt }
   } = props
-
-  // const { title, content } = page
 
   return (
     <Layout>
@@ -43,15 +37,15 @@ const SinglePage = props => {
 
 export default SinglePage
 
-export const pageQuery = graphql`
-  query GET_PAGE($id: ID!) {
-    wpgraphql {
-      page(id: $id) {
-        title
-        content
-        excerpt
-        uri
-      }
-    }
-  }
-`
+// export const pageQuery = graphql`
+//   query GET_PAGE($id: ID!) {
+//     wpgraphql {
+//       page(id: $id) {
+//         title
+//         content
+//         excerpt
+//         uri
+//       }
+//     }
+//   }
+// `
