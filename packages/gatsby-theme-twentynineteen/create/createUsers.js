@@ -1,22 +1,30 @@
+const { PostTemplateFragment } = require(`../src/templates/posts/data.js`)
 const userTemplate = require.resolve(`../src/templates/users/single.js`)
 
 module.exports = async ({ actions, graphql }) => {
   const GET_USERS = `
-  query GET_USERS($first: Int) {
-    wpgraphql { 
-      users(first: $first) {
-        pageInfo {
-          hasNextPage
-          endCursor
-        }
-        nodes {
-          id
-          userId
-          slug
+    query GET_USERS($first: Int) {
+      wpgraphql { 
+        users(first: $first) {
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
+          nodes {
+            id
+            name
+            userId
+            slug
+            posts {
+              nodes {
+                ...PostTemplateFragment
+              }
+            }
+          }
         }
       }
     }
-  }
+    ${PostTemplateFragment}
   `
   const { createPage } = actions
   const allUsers = []

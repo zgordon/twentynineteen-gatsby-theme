@@ -1,19 +1,13 @@
 import React from "react"
-import { graphql } from "gatsby"
 import Layout from "../../components/layout"
 import PostEntry from "../../components/post-entry"
 import SEO from "../../components/seo"
 
 const SingleTag = props => {
-    const {
-      data: {
-        wpgraphql: { 
-          tag: {
-            name, posts
-          } 
-        },
-      },
-    } = props
+  const {
+    pageContext: { name, posts }
+  } = props
+  
   return (
     <Layout classNames="archive">
       <SEO

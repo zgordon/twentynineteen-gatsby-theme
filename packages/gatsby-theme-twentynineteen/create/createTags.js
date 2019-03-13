@@ -1,22 +1,30 @@
+const { PostTemplateFragment } = require(`../src/templates/posts/data.js`)
 const tagTemplate = require.resolve(`../src/templates/tags/single.js`)
 
 module.exports = async ({ actions, graphql }) => {
   const GET_TAGS = `
-  query GET_TAGS($first: Int) {
-    wpgraphql { 
-      tags(first: $first) {
-        pageInfo {
-          hasNextPage
-          endCursor
-        }
-        nodes {
-          id
-          tagId
-          slug
+    query GET_TAGS($first: Int) {
+      wpgraphql { 
+        tags(first: $first) {
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
+          nodes {
+            id
+            name
+            tagId
+            slug
+            posts {
+              nodes {
+                ...PostTemplateFragment
+              }
+            }
+          }
         }
       }
     }
-  }
+    ${PostTemplateFragment}
   `
   const { createPage } = actions
   const allTags = []

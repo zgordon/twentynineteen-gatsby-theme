@@ -1,18 +1,11 @@
 import React from "react"
-import { graphql } from "gatsby"
 import Layout from "../../components/layout"
 import PostEntry from "../../components/post-entry"
 import SEO from "../../components/seo"
 
 const SingleAuthor = props => {
   const {
-    data: {
-      wpgraphql: { 
-        user: {
-          name, posts
-        }
-      },
-    },
+    pageContext: { name, posts }
   } = props
   return (
     <Layout classNames="archive">
