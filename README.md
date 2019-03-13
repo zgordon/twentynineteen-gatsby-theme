@@ -3,7 +3,7 @@ A port of the Twenty Nineteen WordPress Theme over to Gatsby
 
 This repo contains the source code for a site using the above [Gatsby theme](https://www.gatsbyjs.org/blog/2018-11-11-introducing-gatsby-themes/).
 
-##How to use this repo
+## How to use this repo
 ```
 # Clone the repo
 git clone git@github.com:zgordon/twentynineteen-gatsby-theme.git
