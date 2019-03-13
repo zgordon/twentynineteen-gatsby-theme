@@ -6,13 +6,7 @@ import SEO from "../../components/seo"
 
 const SingleCategory = props => {
   const {
-    data: { 
-      wpgraphql: { 
-        category: { 
-          name, posts 
-        }
-      } 
-    },
+    pageContext: { name, posts }
   } = props
 
   return (

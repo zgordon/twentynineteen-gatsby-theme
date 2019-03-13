@@ -10,12 +10,18 @@ const PostTemplateFragment = `
         slug
       }
     }
-    
     tags {
       nodes {
         slug
         name
       }
+    }
+    author {
+      name
+      avatar(size:50) {
+        url
+      }
+      slug
     }
   }
 `
@@ -29,11 +35,11 @@ const BlogPreviewFragment = `
     date
     excerpt
     author {
-        name
-        avatar(size:50) {
-          url
-        }
-        slug
+      name
+      avatar(size:50) {
+        url
+      }
+      slug
     }
   }
 `

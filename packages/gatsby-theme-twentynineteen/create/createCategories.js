@@ -1,24 +1,32 @@
+const { PostTemplateFragment } = require(`../src/templates/posts/data.js`)
 const categoryTemplate = require.resolve(
   `../src/templates/categories/single.js`
 )
 
 module.exports = async ({ actions, graphql }) => {
   const GET_CATEGORIES = `
-  query GET_CATEGORIES($first: Int) {
-    wpgraphql { 
-      categories(first: $first) {
-        pageInfo {
-          hasNextPage
-          endCursor
-        }
-        nodes {
-          id
-          categoryId
-          slug
+    query GET_CATEGORIES($first: Int) {
+      wpgraphql { 
+        categories(first: $first) {
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
+          nodes {
+            id
+            name
+            categoryId
+            slug
+            posts {
+              nodes {
+                ...PostTemplateFragment
+              }
+            }
+          }
         }
       }
     }
-  }
+    ${PostTemplateFragment}
   `
   const { createPage } = actions
   const allCategories = []
