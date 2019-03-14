@@ -1,6 +1,7 @@
 import React from "react"
 import { Link, StaticQuery, graphql } from "gatsby"
 import config from "../../config"
+import ChevronDownIcon from "./icons/chevron-down"
 
 const MENU_QUERY = graphql`
   fragment MenuFields on WPGraphQL_MenuItem {
@@ -74,19 +75,7 @@ const renderSubMenu = menuItem => {
     >
       <Link to="/">{menuItem.label}</Link>
       <button className="submenu-expand" tabIndex="-1">
-        <svg
-          className="svg-icon"
-          width="24"
-          height="24"
-          aria-hidden="true"
-          role="img"
-          focusable="false"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-        >
-          <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
-          <path fill="none" d="M0 0h24v24H0V0z" />
-        </svg>
+        <ChevronDownIcon />
       </button>
       <ul className="sub-menu">
         {menuItem.childItems.nodes.map(item => renderMenuItem(item))}
