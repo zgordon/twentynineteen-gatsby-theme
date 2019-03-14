@@ -3,9 +3,9 @@ import Layout from "../../components/layout"
 import PostEntry from "../../components/post-entry"
 import SEO from "../../components/seo"
 
-const SingleTag = props => {
+const TagArchive = props => {
   const {
-    pageContext: { name, posts }
+    pageContext: { name, posts },
   } = props
 
   return (
@@ -28,4 +28,4 @@ const SingleTag = props => {
   )
 }
 
-export default SingleTag
+export default TagArchive

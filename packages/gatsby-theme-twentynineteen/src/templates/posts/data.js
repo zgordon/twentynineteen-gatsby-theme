@@ -3,6 +3,9 @@ const PostTemplateFragment = `
     id
     postId
     title
+    excerpt
+    uri
+    date
     content
     categories {
       nodes {
@@ -26,23 +29,4 @@ const PostTemplateFragment = `
   }
 `
 
-const BlogPreviewFragment = `
-  fragment BlogPreviewFragment on WPGraphQL_Post {
-    id
-    postId
-    title
-    uri
-    date
-    excerpt
-    author {
-      name
-      avatar(size:50) {
-        url
-      }
-      slug
-    }
-  }
-`
-
 module.exports.PostTemplateFragment = PostTemplateFragment
-module.exports.BlogPreviewFragment = BlogPreviewFragment

@@ -1,6 +1,6 @@
 const { PostTemplateFragment } = require(`../src/templates/posts/data.js`)
 const categoryTemplate = require.resolve(
-  `../src/templates/categories/single.js`
+  `../src/templates/categories/archive.js`
 )
 
 module.exports = async ({ actions, graphql }) => {
@@ -50,7 +50,6 @@ module.exports = async ({ actions, graphql }) => {
     })
 
   await fetchCategories({ first: 100, after: null }).then(allCategories => {
-
     allCategories.map(category => {
       console.log(`create category: ${category.slug}`)
       createPage({
@@ -58,7 +57,7 @@ module.exports = async ({ actions, graphql }) => {
         component: categoryTemplate,
         context: {
           ...category,
-        }
+        },
       })
     })
   })

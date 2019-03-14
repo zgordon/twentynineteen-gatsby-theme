@@ -1,5 +1,5 @@
 const { PostTemplateFragment } = require(`../src/templates/posts/data.js`)
-const tagTemplate = require.resolve(`../src/templates/tags/single.js`)
+const tagTemplate = require.resolve(`../src/templates/tags/archive.js`)
 
 module.exports = async ({ actions, graphql }) => {
   const GET_TAGS = `
@@ -48,7 +48,6 @@ module.exports = async ({ actions, graphql }) => {
     })
 
   await fetchTags({ first: 100, after: null }).then(allTags => {
-
     allTags.map(tag => {
       console.log(`create tag: ${tag.slug}`)
       createPage({

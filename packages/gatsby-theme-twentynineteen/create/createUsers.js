@@ -1,5 +1,5 @@
 const { PostTemplateFragment } = require(`../src/templates/posts/data.js`)
-const userTemplate = require.resolve(`../src/templates/users/single.js`)
+const userTemplate = require.resolve(`../src/templates/users/archive.js`)
 
 module.exports = async ({ actions, graphql }) => {
   const GET_USERS = `
@@ -48,7 +48,6 @@ module.exports = async ({ actions, graphql }) => {
     })
 
   await fetchUsers({ first: 100, after: null }).then(allUsers => {
-
     allUsers.map(user => {
       console.log(`create user: ${user.slug}`)
       createPage({

@@ -42,14 +42,11 @@ const PostEntry = ({
         </span>
         <span className="posted-on">
           <DateIcon />
-          <a
-            href="http://localhost/mtwoblog.com/2019/02/25/hello-world/"
-            rel="bookmark"
-          >
+          <Link to={`/blog/${uri}`} rel="bookmark">
             <time className="entry-date published updated" dateTime={date}>
               {moment(date).format(`MMMM D, YYYY`)}
             </time>
-          </a>
+          </Link>
         </span>
         {categories.nodes.length ? (
           <span className="cat-links">

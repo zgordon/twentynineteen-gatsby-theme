@@ -3,7 +3,7 @@ import Layout from "../../components/layout"
 import PostEntry from "../../components/post-entry"
 import SEO from "../../components/seo"
 
-const SingleCategory = props => {
+const CategoryArchive = props => {
   const {
     pageContext: { name, posts },
   } = props
@@ -28,4 +28,4 @@ const SingleCategory = props => {
   )
 }
 
-export default SingleCategory
+export default CategoryArchive

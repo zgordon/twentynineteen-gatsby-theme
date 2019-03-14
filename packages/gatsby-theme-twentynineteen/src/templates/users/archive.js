@@ -3,9 +3,9 @@ import Layout from "../../components/layout"
 import PostEntry from "../../components/post-entry"
 import SEO from "../../components/seo"
 
-const SingleAuthor = props => {
+const AuthorArchive = props => {
   const {
-    pageContext: { name, posts }
+    pageContext: { name, posts },
   } = props
   return (
     <Layout classNames="archive">
@@ -27,4 +27,4 @@ const SingleAuthor = props => {
   )
 }
 
-export default SingleAuthor
+export default AuthorArchive
