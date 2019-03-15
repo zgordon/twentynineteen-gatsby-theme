@@ -1,8 +1,8 @@
-const createPosts = require(`./scripts/createPosts`)
-const createPages = require(`./scripts/createPages`)
-const createUsers = require(`./scripts/createUsers`)
-const createCategories = require(`./scripts/createCategories`)
-const createTags = require(`./scripts/createTags`)
+const createPosts = require(`./utils/createPosts`)
+const createPages = require(`./utils/createPages`)
+const createUsers = require(`./utils/createUsers`)
+const createCategories = require(`./utils/createCategories`)
+const createTags = require(`./utils/createTags`)
 
 exports.createPages = async ({ actions, graphql }) => {
   await createPosts({ actions, graphql })
