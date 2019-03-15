@@ -1,12 +1,9 @@
 import React from "react"
 import { Link } from "gatsby"
-import moment from "moment/moment"
 import Layout from "../../components/layout"
 import SEO from "../../components/seo"
-import AuthorIcon from "../../components/icons/author"
-import DateIcon from "../../components/icons/date"
-import CategoryIcon from "../../components/icons/category"
-import TagIcon from "../../components/icons/tag"
+import PostHeaderMeta from "../../components/post-header-meta"
+import PostFooterMeta from "../../components/post-footer-meta"
 
 const SinglePost = props => {
   const {
@@ -33,34 +30,7 @@ const SinglePost = props => {
         id={`post-${postId}`}
         className={`post-${postId} post type-post status-publish format-standard hentry category-react tag-accessibility tag-gatsby entry`}
       >
-        <header className="entry-header">
-          <h1 className="entry-title">{title}</h1>
-          <div className="entry-meta">
-            <span className="byline">
-              <AuthorIcon />
-              <span className="screen-reader-text">Posted by</span>
-              <span className="author vcard">
-                <Link className="url fn n" to={`/blog/author/${author.slug}`}>
-                  {author.name}
-                </Link>
-              </span>
-            </span>{" "}
-            <span className="posted-on">
-              <DateIcon />
-              <a
-                href="http://localhost/mtwoblog.com/2019/02/04/using-react-context-api-with-gatsby/"
-                rel="bookmark"
-              >
-                <time
-                  className="entry-date published updated"
-                  dateTime="2019-02-04T15:34:08+00:00"
-                >
-                  {moment(date).format(`MMMM D, YYYY`)}
-                </time>
-              </a>
-            </span>
-          </div>
-        </header>
+        <PostHeaderMeta title={title} date={date} author={author} />
 
         <div
           className="entry-content"
@@ -68,61 +38,12 @@ const SinglePost = props => {
         />
         {/* .entry-content */}
 
-        <footer className="entry-footer">
-          <span className="byline">
-            <AuthorIcon />
-            <span className="screen-reader-text">Posted by</span>
-            <span className="author vcard">
-              <Link className="url fn n" to={`/blog/author/${author.slug}`}>
-                {author.name}
-              </Link>
-            </span>
-          </span>
-          <span className="posted-on">
-            <DateIcon />
-            <a
-              href="http://localhost/mtwoblog.com/2019/02/25/hello-world/"
-              rel="bookmark"
-            >
-              <time
-                className="entry-date published updated"
-                dateTime="2019-02-25T17:37:06+00:00"
-              >
-                {moment(date).format(`MMMM D, YYYY`)}
-              </time>
-            </a>
-          </span>
-          <span className="cat-links">
-            <CategoryIcon />
-            <span className="screen-reader-text">Posted in</span>
-            {categories.nodes
-              .map(category => (
-                <Link
-                  key={category.name}
-                  to={`/blog/category/${category.slug}`}
-                  rel="category"
-                >
-                  {category.name}
-                </Link>
-              ))
-              .reduce((accu, elem) => {
-                return accu === null ? [elem] : [...accu, ", ", elem]
-              }, null)}
-          </span>
-          <span className="tags-links">
-            <TagIcon />
-            <span className="screen-reader-text">Tags: </span>
-            {tags.nodes
-              .map(tag => (
-                <Link key={tag.name} to={`/blog/tag/${tag.slug}`} rel="tag">
-                  {tag.name}
-                </Link>
-              ))
-              .reduce((accu, elem) => {
-                return accu === null ? [elem] : [...accu, ", ", elem]
-              }, null)}
-          </span>
-        </footer>
+        <PostFooterMeta
+          date={date}
+          author={author}
+          categories={categories}
+          tags={tags}
+        />
       </article>
       {/* #post-${ID} */}
       <nav className="navigation post-navigation" role="navigation">
