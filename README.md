@@ -6,7 +6,7 @@ This repo contains the source code for a site using the above [Gatsby theme](htt
 ## How to use this repo
 ```
 # Clone the repo
-git clone git@github.com:zgordon/twentynineteen-gatsby-theme.git
+git clone https://github.com/zgordon/twentynineteen-gatsby-theme.git
 
 # Move into the new directory
 cd twentynineteen-gatsby-theme
@@ -21,6 +21,7 @@ yarn workspace starter develop
 If this is your first time using Yarn workspaces, [check out the docs](https://yarnpkg.com/lang/en/docs/workspaces/).
 
 ## Links and further reading
+- https://gatsbywpthemes.com/
 - https://www.gatsbyjs.org/blog/2018-11-11-introducing-gatsby-themes/
 - https://www.gatsbyjs.org/packages/gatsby-plugin-page-creator/
 - https://gatsby-mdx.netlify.com/getting-started
@@ -30,4 +31,4 @@ If this is your first time using Yarn workspaces, [check out the docs](https://y
 - https://twitter.com/zgordon
 - https://twitter.com/muhsinlk
 - https://twitter.com/jasonbahl
-- https://twitter.com/hussain_thaj/
+- https://twitter.com/hussain_thaj
