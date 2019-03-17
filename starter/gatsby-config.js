@@ -3,12 +3,14 @@ module.exports = {
     title: `Twenty Nineteen Starter`,
     description: `Gatsby starter site for Twenty Nineteen Gatsby Theme.`,
     author: `@muhsinlk`,
-    wordPressUrl: `https://mtwoblog.com`
+    wordPressUrl: `http://dev-twenty-nineteen-gatsby-demo.pantheonsite.io`
   },
   __experimentalThemes: [
     {
       resolve: "gatsby-theme-twentynineteen",
-      options: { wordPressUrl: `https://mtwoblog.com` }
+      options: {
+        wordPressUrl: `http://dev-twenty-nineteen-gatsby-demo.pantheonsite.io`
+      }
     }
   ]
 };

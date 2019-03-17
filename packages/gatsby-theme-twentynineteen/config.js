@@ -7,7 +7,7 @@
  * @type {{wordPressUrl: string}}
  */
 const config = {
-  wordPressUrl: `https://mtwoblog.com`,
+  wordPressUrl: `http://dev-twenty-nineteen-gatsby-demo.pantheonsite.io`,
 }
 
 module.exports = config
