@@ -1,6 +1,5 @@
 import React from "react"
 import { Link, StaticQuery, graphql } from "gatsby"
-import config from "../../config"
 import ChevronDownIcon from "./icons/chevron-down"
 
 const MENU_QUERY = graphql`
@@ -14,6 +13,13 @@ const MENU_QUERY = graphql`
   }
 
   query GET_MENU_ITEMS {
+    site {
+      _xexperimentalThemes {
+        options {
+          wordPressUrl
+        }
+      }
+    }
     wpgraphql {
       menuItems(where: { location: MENU_1 }) {
         nodes {
@@ -44,15 +50,15 @@ const MENU_QUERY = graphql`
   }
 `
 
-const createLocalLink = url => {
+const createLocalLink = (url, wpUrl) => {
   if (`#` === url) {
     return null
   }
-  return url.replace(config.wordPressUrl, ``)
+  return url.replace(wpUrl, ``)
 }
 
-const renderMenuItem = menuItem => {
-  const link = createLocalLink(menuItem.url)
+const renderMenuItem = (menuItem, wpUrl) => {
+  const link = createLocalLink(menuItem.url, wpUrl)
   if (menuItem.childItems && menuItem.childItems.nodes.length) {
     return renderSubMenu(menuItem)
   } else {
@@ -67,7 +73,7 @@ const renderMenuItem = menuItem => {
   }
 }
 
-const renderSubMenu = menuItem => {
+const renderSubMenu = (menuItem, wpUrl) => {
   return (
     <li
       key={menuItem.label}
@@ -78,7 +84,7 @@ const renderSubMenu = menuItem => {
         <ChevronDownIcon />
       </button>
       <ul className="sub-menu">
-        {menuItem.childItems.nodes.map(item => renderMenuItem(item))}
+        {menuItem.childItems.nodes.map(item => renderMenuItem(item, wpUrl))}
       </ul>
     </li>
   )
@@ -87,7 +93,8 @@ const renderSubMenu = menuItem => {
 const Menu = () => (
   <StaticQuery
     query={MENU_QUERY}
-    render={({ wpgraphql }) => {
+    render={({ wpgraphql, site }) => {
+      const wpUrl = site._xexperimentalThemes[0].options.wordPressUrl
       if (wpgraphql.menuItems) {
         return (
           <nav
@@ -99,9 +106,9 @@ const Menu = () => (
               <ul id="menu-main-menu" className="main-menu">
                 {wpgraphql.menuItems.nodes.map(menuItem => {
                   if (menuItem.childItems.nodes.length) {
-                    return renderSubMenu(menuItem)
+                    return renderSubMenu(menuItem, wpUrl)
                   } else {
-                    return renderMenuItem(menuItem)
+                    return renderMenuItem(menuItem, wpUrl)
                   }
                 })}
               </ul>
