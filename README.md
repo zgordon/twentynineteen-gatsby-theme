@@ -23,9 +23,8 @@ If this is your first time using Yarn workspaces, [check out the docs](https://y
 ## Links and further reading
 - https://gatsbywpthemes.com/
 - https://www.gatsbyjs.org/blog/2018-11-11-introducing-gatsby-themes/
-- https://www.gatsbyjs.org/packages/gatsby-plugin-page-creator/
-- https://gatsby-mdx.netlify.com/getting-started
-- https://www.gatsbyjs.org/packages/gatsby-source-filesystem/
+- https://javascriptforwp.com/porting-the-twenty-nineteen-wordpress-theme-to-gatsby/
+- https://wordpress.tv/2018/02/26/jason-bahl-wpgraphql-interacting-with-wordpress-data-in-a-new-way/
 
 ## Team members
 - https://twitter.com/zgordon
