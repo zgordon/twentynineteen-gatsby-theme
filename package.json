@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "twentynineteen-gatsby-theme",
+  "name": "josh-dot-gatsbyjs",
   "version": "1.0.0",
   "workspaces": [
     "starter",

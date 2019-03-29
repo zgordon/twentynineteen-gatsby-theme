@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Twenty Nineteen Starter`,
+    title: `Josh Dot Gatsby Js`,
     description: `Gatsby starter site for Twenty Nineteen Gatsby Theme.`,
-    author: `@muhsinlk`,
+    author: `@shelob9`,
     wordPressUrl: `http://dev-twenty-nineteen-gatsby-demo.pantheonsite.io`
   },
   __experimentalThemes: [
