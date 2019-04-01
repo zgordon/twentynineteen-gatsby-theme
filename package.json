@@ -5,5 +5,10 @@
   "workspaces": [
     "starter",
     "packages/*"
-  ]
+  ],
+  "scripts": {
+    "develop": "yarn workspace starter develop",
+    "build": "yarn workspace starter build",
+    "start": "yarn workspace starter start"
+  }
 }
