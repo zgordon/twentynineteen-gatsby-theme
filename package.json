@@ -1,6 +1,8 @@
 {
+  "private": true,
   "name": "josh-dot-gatsbyjs",
   "version": "0.0.1",
+  "license": "GPL-2.0",
   "workspaces": [
     "starter",
     "packages/*"
