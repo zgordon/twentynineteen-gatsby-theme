@@ -3,6 +3,7 @@ import Layout from "../../components/layout"
 import SEO from "../../components/seo"
 import {CF2Form} from '@calderajs/forms'
 import axios from 'axios';
+
 const firstNameField = {
 	fieldType: 'text',
 	value: '',
