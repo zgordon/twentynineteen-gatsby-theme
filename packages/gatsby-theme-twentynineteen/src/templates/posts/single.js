@@ -5,6 +5,7 @@ import SEO from "../../components/seo"
 import PostHeaderMeta from "../../components/post-header-meta"
 import PostFooterMeta from "../../components/post-footer-meta"
 import EmbedContainer from 'react-oembed-container';
+import {MailChimp} from "../../components/MailChimp";
 
 const SinglePost = props => {
   const {
@@ -41,7 +42,7 @@ const SinglePost = props => {
           </EmbedContainer>
 
         {/* .entry-content */}
-
+		  <MailChimp/>
         <PostFooterMeta
           date={date}
           author={author}

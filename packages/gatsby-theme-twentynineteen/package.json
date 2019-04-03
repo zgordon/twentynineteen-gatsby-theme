@@ -23,6 +23,7 @@
     "node-sass": "^4.11.0",
     "prop-types": "^15.7.2",
     "react-helmet": "^5.2.0",
+    "react-mailchimp-subscribe": "^2.1.0",
     "react-oembed-container": "^0.3.0"
   }
 }
