@@ -4,6 +4,7 @@ import Layout from "../../components/layout"
 import SEO from "../../components/seo"
 import PostHeaderMeta from "../../components/post-header-meta"
 import PostFooterMeta from "../../components/post-footer-meta"
+import EmbedContainer from 'react-oembed-container';
 
 const SinglePost = props => {
   const {
@@ -32,10 +33,13 @@ const SinglePost = props => {
       >
         <PostHeaderMeta title={title} date={date} author={author} />
 
-        <div
-          className="entry-content"
-          dangerouslySetInnerHTML={{ __html: content }}
-        />
+		  <EmbedContainer markup={content}>
+			  <div
+				  className="entry-content"
+				  dangerouslySetInnerHTML={{ __html: content }}
+			  />
+          </EmbedContainer>
+
         {/* .entry-content */}
 
         <PostFooterMeta
