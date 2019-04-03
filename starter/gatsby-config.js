@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `Josh Dot Gatsby Js`,
-    description: `Gatsby starter site for Twenty Nineteen Gatsby Theme.`,
+    title: `Future Capable`,
+    description: `Just Another Headless WordPress Site`,
     author: `@shelob9`,
     wordPressUrl: `http://dev-futurecapable.pantheonsite.io`
   },
