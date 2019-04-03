@@ -10,6 +10,8 @@
   "scripts" : {
     "develop" : "yarn workspace starter develop",
     "build" : "yarn workspace starter build",
-    "start": "yarn workspace starter start"
+    "start": "yarn workspace starter start",
+    "theme-add": "yarn workspace gatsby-theme-twentynineteen add",
+    "starter-add": "yarn workspace starter add"
   }
 }
