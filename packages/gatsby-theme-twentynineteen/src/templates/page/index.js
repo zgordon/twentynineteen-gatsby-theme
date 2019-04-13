@@ -27,7 +27,7 @@ const SinglePage = props => {
           className="entry-content"
         >
 			{
-				'contact' === uri  ? <ContactForm apiRootUrl={'https://futurecapable.dev/wp-json/cf-api'} /> : <div dangerouslySetInnerHTML={{ __html: content }} />
+				'contact' === uri  ? <ContactForm apiRootUrl={'https://cms.futurecapable.dev/wp-json/cf-api'} /> : <div dangerouslySetInnerHTML={{ __html: content }} />
 			}
 
 		</div>
