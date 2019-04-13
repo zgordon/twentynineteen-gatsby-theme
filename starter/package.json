@@ -12,9 +12,10 @@
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
   },
   "dependencies": {
+    "@calderajs/forms": "0.3.0",
     "gatsby": "^2.1.23",
+    "gatsby-theme-twentynineteen": "*",
     "react": "^16.8.3",
-    "react-dom": "^16.8.3",
-    "gatsby-theme-twentynineteen": "*"
+    "react-dom": "^16.8.3"
   }
 }

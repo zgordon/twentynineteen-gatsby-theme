@@ -14,3 +14,19 @@
     text-align: center;
   }
 }
+
+.caldera-form {
+
+
+  #row-2-column-1 {
+    width: 100%;
+    .caldera-field-wrapper {
+      padding: 0;
+    }
+    div, input { width: 100%}
+  }
+  #row-3-column-1 {
+    width: 100%;
+    div, input { width: 100%}
+  }
+}

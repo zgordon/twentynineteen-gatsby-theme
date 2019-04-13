@@ -4,95 +4,103 @@ import SEO from "../../components/seo"
 import {CF2Form} from '@calderajs/forms'
 import axios from 'axios';
 
+const FIRST_NAME_ID = 'name';
+const COMMENTS_FIELD_ID = 'comments_questions';
+const EMAIL_FIELD_ID = 'email';
+const SUBMIT_BUTTON_FIELD_ID = 'fld_7908577';
+
 const firstNameField = {
 	fieldType: 'text',
 	value: '',
 	label: 'First Name',
-	fieldId: 'fld_8768091',
-	description: 'Your first name',
+	fieldId: FIRST_NAME_ID,
 	required: true
 };
 
-const lastNameField = {
+const emailField = {
 	fieldType: 'text',
 	value: '',
 	label: 'Last Name',
-	fieldId: 'fld_9970286',
-	description: 'Your last name',
+	fieldId: EMAIL_FIELD_ID,
 	required: true
 };
-const emailField = {
-	fieldType: 'email',
+
+const commentsField = {
+	fieldType: 'textarea',
 	value: '',
-	label: 'Email',
-	fieldId: 'fld_6009157',
-	description: 'Your email',
-	required: true,
-	attributes: {
-		multiple: false
-	}
-};
+	label: 'Your Message',
+	fieldId: COMMENTS_FIELD_ID,
+	required: false
+}
+
 
 const submitButton = {
-	fieldId: 'fld_7908577',
-	label: 'Click Me',
+	fieldId: SUBMIT_BUTTON_FIELD_ID,
+	label: 'Send Your Message',
 	fieldType: 'submit',
 };
 
+const formId = 'contact';
+
 const formConfig = {
-	ID: 'CF5c9f86904e447',
+	ID: formId,
 	rows: [
 		{
-			rowId: 'r1',
 			columns: [
 				{
-					fields: [firstNameField.fieldId],
+					fields: [FIRST_NAME_ID],
 					width: '1/2',
-					columnId: `r1-${firstNameField.fieldId}`
 				},
 				{
-					fields: [lastNameField.fieldId],
-					width: '1/4',
-					columnId: `r1-${lastNameField.fieldId}`
+					fields: [EMAIL_FIELD_ID],
+					width: '1/2',
 				}
 			]
 		},
 		{
-			rowId: 'r2',
 			columns: [
 				{
-					fields: [emailField.fieldId],
-					width: '1',
-					columnId: `r2-${emailField.fieldId}`
-				},
+					fields: [COMMENTS_FIELD_ID],
+					width: '100',
+				}
 			]
 		},
 		{
-			rowId: 'r3',
 			columns: [
 				{
-					fields: [submitButton.fieldId],
+					fields: [SUBMIT_BUTTON_FIELD_ID],
 					width: '1',
-					columnId: `r2-${emailField.fieldId}`
 				},
 			]
-		}
+		},
 	],
 	fields: [
-		emailField,
+		submitButton,
 		firstNameField,
-		lastNameField,
-		submitButton
+		emailField,
+		commentsField
 	],
 	conditionals: []
 };
 
+let rowIndex = 1;
+let columnIndex;
+formConfig.rows.forEach( row => {
+	row.rowId = `row-${rowIndex}`;
+	columnIndex = 1;
+	row.columns.forEach( column => {
+		column.columnId =`row-${rowIndex}-column-${columnIndex}`;
+		columnIndex ++;
+	});
+	rowIndex++;
+} );
+
 const SinglePage = props => {
   const {
     pageContext: { id, postId, content, excerpt },
-  } = props
+  } = props;
 
-    const title = 'Every Page Is The Contact Page'
+    const title = 'Every Page Is The Contact Page';
 
   return (
     <Layout>
@@ -114,7 +122,7 @@ const SinglePage = props => {
 			<CF2Form
 				formConfig={formConfig}
 				axios={axios}
-				apiRootUri={'http://dev-futurecapable.pantheonsite.io/wp-json/cf-api'}
+				apiRootUri={'https://formcalderas.lndo.site/wp-json/cf-api'}
 			/>
         </div>
         {/* .entry-content */}
@@ -124,6 +132,6 @@ const SinglePage = props => {
       {/* #post-${ID} */}
     </Layout>
   )
-}
+};
 
 export default SinglePage
