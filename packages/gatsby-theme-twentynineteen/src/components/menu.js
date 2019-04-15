@@ -21,7 +21,7 @@ const MENU_QUERY = graphql`
       }
     }
     wpgraphql {
-      menuItems(where: { location: MENU_1 }) {
+      menuItems(where: { location: PRIMARY }) {
         nodes {
           ...MenuFields
           childItems {
