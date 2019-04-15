@@ -13,6 +13,7 @@ const SinglePost = props => {
       title,
       excerpt,
       content,
+      uri,
       date,
       author,
       categories,
@@ -30,7 +31,7 @@ const SinglePost = props => {
         id={`post-${postId}`}
         className={`post-${postId} post type-post status-publish format-standard hentry category-react tag-accessibility tag-gatsby entry`}
       >
-        <PostHeaderMeta title={title} date={date} author={author} />
+        <PostHeaderMeta uri={uri} title={title} date={date} author={author} />
 
         <div
           className="entry-content"
@@ -39,6 +40,7 @@ const SinglePost = props => {
         {/* .entry-content */}
 
         <PostFooterMeta
+          uri={uri}
           date={date}
           author={author}
           categories={categories}
