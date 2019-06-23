@@ -12,9 +12,11 @@
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
   },
   "dependencies": {
+    "axios": "^0.19.0",
+    "formik": "^1.5.7",
     "gatsby": "^2.1.23",
+    "gatsby-theme-twentynineteen": "*",
     "react": "^16.8.3",
-    "react-dom": "^16.8.3",
-    "gatsby-theme-twentynineteen": "*"
+    "react-dom": "^16.8.3"
   }
 }

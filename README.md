@@ -18,6 +18,35 @@ yarn
 yarn workspace starter develop
 ```
 
+## Contact Form
+
+We added contact form support using Contact Form 7 (CF7) at the backend. Please follow these steps to get it working on your Gatsby site:
+
+1.  Install `Contact Form 7` plugin on your WordPress site
+2.  Install `Advanced Contact form 7 DB` plugin on your WordPress site to check if you are receiving your form data.
+3.  Set up contact form similar to this:
+
+```
+<label> Your Name (required)
+    [text* your-name] </label>
+
+<label> Your Email (required)
+    [email* your-email] </label>
+
+<label> Your Website
+    [text your-website] </label>
+
+<label> Your Message
+    [textarea your-message] </label>
+
+[submit "Send"]
+```
+
+4. Add your contact form to a page and test if it's working. (This step is important.)
+5. Head over `starter/src/components/contact-form.js` on this project and make sure the form fields are consistent with the step 3.
+6. Render the component in any page and test your Gatsby site. Currently, it's rendering in `starter/src/pages/contact.js`
+
+---
 If this is your first time using Yarn workspaces, [check out the docs](https://yarnpkg.com/lang/en/docs/workspaces/).
 
 ## Links and further reading

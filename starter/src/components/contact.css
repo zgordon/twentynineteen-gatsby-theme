@@ -1,0 +1,23 @@
+.contact-form label {
+    margin-bottom: .25em;
+    float: none;
+    font-weight: 700;
+    display: block;
+}
+
+.contact-form label span {
+    color: #aaa;
+    margin-left: .25em;
+    font-weight: 400;
+}
+
+.contact-form .form-field {
+    margin-bottom: .25em;
+    margin-bottom: .75em;
+}
+
+span.error {
+    display: block;
+    color: red;
+    font-size: 0.8em;
+}
