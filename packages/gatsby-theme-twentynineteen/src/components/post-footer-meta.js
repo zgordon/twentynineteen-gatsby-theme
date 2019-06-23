@@ -6,7 +6,7 @@ import DateIcon from "./icons/date"
 import CategoryIcon from "./icons/category"
 import TagIcon from "./icons/tag"
 
-const PostFooterMeta = ({ author, date, categories, tags }) => (
+const PostFooterMeta = ({ author, date, categories, tags, uri }) => (
   <footer className="entry-footer">
     <span className="byline">
       <AuthorIcon />
@@ -19,8 +19,8 @@ const PostFooterMeta = ({ author, date, categories, tags }) => (
     </span>
     <span className="posted-on">
       <DateIcon />
-      <a
-        href="http://localhost/mtwoblog.com/2019/02/25/hello-world/"
+      <Link
+        to={`blog/${uri}`}
         rel="bookmark"
       >
         <time
@@ -29,7 +29,7 @@ const PostFooterMeta = ({ author, date, categories, tags }) => (
         >
           {moment(date).format(`MMMM D, YYYY`)}
         </time>
-      </a>
+      </Link>
     </span>
     <span className="cat-links">
       <CategoryIcon />

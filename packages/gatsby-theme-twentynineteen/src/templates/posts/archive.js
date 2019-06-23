@@ -62,19 +62,6 @@ const BlogArchive = props => {
           <span aria-current="page" className="page-numbers current">
             {pageNumber}
           </span>
-          {/*             
-            <a
-              className="page-numbers"
-              href="http://localhost/mtwoblog.com/page/2/"
-            >
-              2
-            </a>
-            <a
-              className="page-numbers"
-              href="http://localhost/mtwoblog.com/page/3/"
-            >
-              3
-            </a> */}
           {renderNextLink(props)}
         </div>
       </nav>
