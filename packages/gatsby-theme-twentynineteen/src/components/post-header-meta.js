@@ -6,7 +6,7 @@ import DateIcon from "./icons/date"
 
 const PostHeaderMeta = ({ title, author, date, uri }) => (
   <header className="entry-header">
-    <h1 className="entry-title">{title}</h1>
+    <h1 className="entry-title" dangerouslySetInnerHTML={{ __html: title }} />
     <div className="entry-meta">
       <span className="byline">
         <AuthorIcon />
