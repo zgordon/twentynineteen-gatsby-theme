@@ -24,6 +24,8 @@ const SinglePost = props => {
   const { wordPressUrl } = data.site._xexperimentalThemes[0].options;
 
   const [comments, setComments] = useState([]);
+  const [replies, setReplies] = useState([]);
+  const [pingbacks, setPingbacks] = useState([]);
 
   const fetchComments = async (id) => {
     const COMMENT_QUERY = `
@@ -32,14 +34,20 @@ const SinglePost = props => {
           title
           comments {
             nodes {
+              id
+              commentId
               content
               type
               children {
                 nodes {
+                  id
+                  commentId
                   content
                   type
                   children {
                     nodes {
+                      id
+                      commentId
                       content
                       type
                     }
@@ -51,16 +59,19 @@ const SinglePost = props => {
         }
       }
     `;
-    const comments = await axios.post(`${wordPressUrl}/graphql`, { query: COMMENT_QUERY })
-    return comments
+    const response = await axios.post(`${wordPressUrl}/graphql`, { query: COMMENT_QUERY })
+    setComments(response && response.data && response.data.data && response.data.data.post.comments)
+
+    const pingbacks = comments && comments.nodes && comments.nodes.length && comments.nodes.filter(comment => comment.type === "pingback")
+    setPingbacks(pingbacks)
+
+    const replies = comments && comments.nodes && comments.nodes.length && comments.nodes.filter(comment => comment.type === null)
+    setReplies(replies)
   }
 
   useEffect(() => {
-    console.log('id', props.pageContext.id)
-    const comments = fetchComments(id)
-    console.log('comments', comments)
-    setComments(comments)
-  });
+    fetchComments(id)
+  }, [comments.length]);
 
 
   const {
@@ -205,10 +216,29 @@ const SinglePost = props => {
                 <div className="comment-reply"><a rel="nofollow" className="comment-reply-link" href="/mtwoblog.com/2017/10/02/wordcamp-colombo-2017-from-the-front-row/?replytocom=79#respond" data-commentid="79" data-postid="567" data-belowelement="div-comment-79" data-respondelement="respond" aria-label="Reply to Muhammad Muhsin">Reply</a></div>		</li>{/* #comment-## */}
             </ol>{/* .children */}
           </li>{/* #comment-## */}
-          <li id="comment-80" className="pingback even thread-odd thread-alt depth-1">
+
+          <>
+            {
+              pingbacks && pingbacks.length && pingbacks.map(pingback => (
+                <li id={`comment-${pingback.commentId}`} key={pingback.id} className="pingback even thread-odd thread-alt depth-1">
+                  <div className="comment-body">
+                    Pingback: 
+                    <a href="" rel="external nofollow" className="url" dangerouslySetInnerHTML={{ __html: pingback.content }} />
+                  </div>
+                </li>
+
+              ))
+            }
+          </>
+          {/* <li id="comment-80" className="pingback even thread-odd thread-alt depth-1">
             <div className="comment-body">
-              Pingback: <a href="http://technonstop.com/wordcamp-colombo-2017-lessons-first-time-organizer" rel="external nofollow" className="url">WordCamp Colombo 2017 - My Lessons as a First Time Organizer - TechNonStop</a> 			</div>
-          </li>{/* #comment-## */}
+              Pingback: 
+              <a href="http://technonstop.com/wordcamp-colombo-2017-lessons-first-time-organizer" rel="external nofollow" className="url">
+                WordCamp Colombo 2017 - My Lessons as a First Time Organizer - TechNonStop
+              </a>
+            </div>
+          </li> */}
+
         </ol>{/* .comment-list */}
         <div className="comment-form-flex">
           <span className="screen-reader-text">Leave a comment</span>
