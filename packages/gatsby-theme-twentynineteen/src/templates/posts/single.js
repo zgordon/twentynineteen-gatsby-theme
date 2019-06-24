@@ -291,13 +291,13 @@ const SinglePost = props => {
                 <li id={`comment-${pingback.commentId}`} key={pingback.id} className="pingback even thread-odd thread-alt depth-1">
                   <div className="comment-body">
                     Pingback:
-                    <a href="" rel="external nofollow" className="url" dangerouslySetInnerHTML={{ __html: pingback.content }} />
+                    <a href="#pingnback-url-here" rel="external nofollow" className="url" dangerouslySetInnerHTML={{ __html: pingback.content }} />
                   </div>
                 </li>
-
               ))
             }
           </>
+          
           {/* <li id="comment-80" className="pingback even thread-odd thread-alt depth-1">
             <div className="comment-body">
               Pingback: 
