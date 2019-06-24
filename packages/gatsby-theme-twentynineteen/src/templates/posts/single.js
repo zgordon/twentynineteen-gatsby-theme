@@ -1,24 +1,65 @@
 import React, { useEffect, useState } from "react"
-import { Link } from "gatsby"
+import { Link, graphql, useStaticQuery } from "gatsby"
 import axios from 'axios'
 import Layout from "../../components/layout"
 import SEO from "../../components/seo"
 import PostHeaderMeta from "../../components/post-header-meta"
 import PostFooterMeta from "../../components/post-footer-meta"
 
+const SITEURL_QUERY = graphql`
+  query CommentsSectionsQuery {
+    site {
+      _xexperimentalThemes {
+        options {
+          wordPressUrl
+        }
+      }
+    }
+  }
+`;
+
 const SinglePost = props => {
+
+  const data = useStaticQuery(SITEURL_QUERY);
+  const { wordPressUrl } = data.site._xexperimentalThemes[0].options;
 
   const [comments, setComments] = useState([]);
 
   const fetchComments = async (id) => {
-    const comments = await axios();
+    const COMMENT_QUERY = `
+      {
+        post(id: "${id}") {
+          title
+          comments {
+            nodes {
+              content
+              type
+              children {
+                nodes {
+                  content
+                  type
+                  children {
+                    nodes {
+                      content
+                      type
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    `;
+    const comments = await axios.post(`${wordPressUrl}/graphql`, { query: COMMENT_QUERY })
     return comments
   }
 
   useEffect(() => {
     console.log('id', props.pageContext.id)
-    const comments = fetchComments(postId)
-    document.title = `You clicked $ times`;
+    const comments = fetchComments(id)
+    console.log('comments', comments)
+    setComments(comments)
   });
 
 
