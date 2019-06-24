@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
-import axios from 'axios'
+import axios from "axios"
+import moment from "moment"
 import Layout from "../../components/layout"
 import SEO from "../../components/seo"
 import PostHeaderMeta from "../../components/post-header-meta"
@@ -38,17 +39,20 @@ const SinglePost = props => {
               commentId
               content
               type
+              date
               children {
                 nodes {
                   id
                   commentId
                   content
+                  date
                   type
                   children {
                     nodes {
                       id
                       commentId
                       content
+                      date
                       type
                     }
                   }
@@ -169,60 +173,124 @@ const SinglePost = props => {
           </div>{/* .discussion-meta */}
         </div>{/* .comments-title-flex */}
         <ol className="comment-list">
-          <li id="comment-78" className="comment even thread-even depth-1 parent">
+
+          <>
+            {
+              replies && replies.length && replies.map(reply => (
+                <li id={`comment-${reply.commentId}`} key={reply.id} className="comment even thread-even depth-1 parent">
+                  <article id="div-comment-78" className="comment-body">
+                    <footer className="comment-meta">
+                      <div className="comment-author vcard">
+
+                        <img alt="" src="http://0.gravatar.com/avatar/0b425d6984e2b0b575635f5101913416?s=60&amp;d=mm&amp;r=g"
+                          srcSet="http://0.gravatar.com/avatar/0b425d6984e2b0b575635f5101913416?s=120&amp;d=mm&amp;r=g 2x" className="avatar avatar-60 photo" height="60" width="60" />
+                        <b className="fn">{`Comment Author`}</b>
+                        <span className="screen-reader-text says">says:</span>
+                      </div>{/* .comment-author */}
+
+                      <div className="comment-metadata">
+                        <a href="http://localhost/mtwoblog.com/2017/10/02/wordcamp-colombo-2017-from-the-front-row/#comment-78">
+                          <time dateTime={reply.date} title="October 2, 2017 at 9:59 pm">
+                            {`${moment(reply.date).format("MMMM D, YYYY")} at ${moment(reply.date).format("h:mm a")}`}
+                          </time>
+                        </a>
+                      </div>{/* .comment-metadata */}
+
+                    </footer>{/* .comment-meta */}
+
+                    <div className="comment-content">
+                      <p dangerouslySetInnerHTML={{ __html: reply.content }} />
+                    </div>{/* .comment-content */}
+
+                  </article>{/* .comment-body */}
+                  <div className="comment-reply"><a rel="nofollow" className="comment-reply-link" href="/mtwoblog.com/2017/10/02/wordcamp-colombo-2017-from-the-front-row/?replytocom=78#respond" data-commentid="78" data-postid="567" data-belowelement="div-comment-78" data-respondelement="respond" aria-label="Reply to Humaiz Azad">Reply</a></div>		<ol className="children">
+                    <li id="comment-79" className="comment byuser comment-author-muhammad-muhsin bypostauthor odd alt depth-2">
+                      <article id="div-comment-79" className="comment-body">
+                        <footer className="comment-meta">
+                          <div className="comment-author vcard">
+                            <a href="http://mtwoblog.com" rel="external nofollow" className="url"><img alt="" src="http://2.gravatar.com/avatar/?s=60&amp;d=mm&amp;r=g" srcSet="http://2.gravatar.com/avatar/?s=120&amp;d=mm&amp;r=g 2x" className="avatar avatar-60 photo avatar-default" height="60" width="60" /><span className="post-author-badge" aria-hidden="true"><svg className="svg-icon" width="24" height="24" aria-hidden="true" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"></path><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></span><span className="post-author-badge" aria-hidden="true"><svg className="svg-icon" width="24" height="24" aria-hidden="true" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"></path><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></span><b className="fn"></b></a><b className="fn"><a href="http://mtwoblog.com" rel="external nofollow" className="url">Muhammad Muhsin</a></b> <span className="screen-reader-text says">says:</span>					</div>{/* .comment-author */}
+
+                          <div className="comment-metadata">
+                            <a href="http://localhost/mtwoblog.com/2017/10/02/wordcamp-colombo-2017-from-the-front-row/#comment-79">
+                              <time dateTime="2017-10-02T22:10:39+00:00" title="October 2, 2017 at 10:10 pm">
+                                October 2, 2017 at 10:10 pm							</time>
+                            </a>
+                          </div>{/* .comment-metadata */}
+
+                        </footer>{/* .comment-meta */}
+
+                        <div className="comment-content">
+                          <p>Sure, let’s have a meetup about it one day. Check out Chathu’s slides here: <a href="https://speakerdeck.com/iamchathu/hardening-wordpress-is-an-art" rel="nofollow">https://speakerdeck.com/iamchathu/hardening-wordpress-is-an-art</a></p>
+                        </div>{/* .comment-content */}
+
+                      </article>{/* .comment-body */}
+
+                      <div className="comment-reply"><a rel="nofollow" className="comment-reply-link" href="/mtwoblog.com/2017/10/02/wordcamp-colombo-2017-from-the-front-row/?replytocom=79#respond" data-commentid="79" data-postid="567" data-belowelement="div-comment-79" data-respondelement="respond" aria-label="Reply to Muhammad Muhsin">Reply</a></div>		</li>{/* #comment-## */}
+                  </ol>{/* .children */}
+                </li>
+
+              ))
+            }
+          </>
+
+          {/* <li id="comment-78" className="comment even thread-even depth-1 parent">
             <article id="div-comment-78" className="comment-body">
               <footer className="comment-meta">
                 <div className="comment-author vcard">
                   <img alt="" src="http://0.gravatar.com/avatar/0b425d6984e2b0b575635f5101913416?s=60&amp;d=mm&amp;r=g"
-                    srcSet="http://0.gravatar.com/avatar/0b425d6984e2b0b575635f5101913416?s=120&amp;d=mm&amp;r=g 2x" className="avatar avatar-60 photo" height="60" width="60" /><b className="fn">Humaiz Azad</b> <span className="screen-reader-text says">says:</span>					</div>{/* .comment-author */}
+                    srcSet="http://0.gravatar.com/avatar/0b425d6984e2b0b575635f5101913416?s=120&amp;d=mm&amp;r=g 2x" className="avatar avatar-60 photo" height="60" width="60" /><b className="fn">Humaiz Azad</b> <span className="screen-reader-text says">says:</span>					
+                </div>{
+                      
 
                 <div className="comment-metadata">
                   <a href="http://localhost/mtwoblog.com/2017/10/02/wordcamp-colombo-2017-from-the-front-row/#comment-78">
                     <time dateTime="2017-10-02T21:59:48+00:00" title="October 2, 2017 at 9:59 pm">
                       October 2, 2017 at 9:59 pm							</time>
                   </a>
-                </div>{/* .comment-metadata */}
+                </div>
 
-              </footer>{/* .comment-meta */}
+              </footer>
 
               <div className="comment-content">
                 <p>Interesting read. Specially about the hardening WordPress. Should regard website security seriously nowadays alot of sites are getting attacked even in Sri Lanka. Maybe we can have a little session on website hardenin oneday</p>
-              </div>{/* .comment-content */}
+              </div>
 
-            </article>{/* .comment-body */}
+            </article>
 
             <div className="comment-reply"><a rel="nofollow" className="comment-reply-link" href="/mtwoblog.com/2017/10/02/wordcamp-colombo-2017-from-the-front-row/?replytocom=78#respond" data-commentid="78" data-postid="567" data-belowelement="div-comment-78" data-respondelement="respond" aria-label="Reply to Humaiz Azad">Reply</a></div>		<ol className="children">
               <li id="comment-79" className="comment byuser comment-author-muhammad-muhsin bypostauthor odd alt depth-2">
                 <article id="div-comment-79" className="comment-body">
                   <footer className="comment-meta">
                     <div className="comment-author vcard">
-                      <a href="http://mtwoblog.com" rel="external nofollow" className="url"><img alt="" src="http://2.gravatar.com/avatar/?s=60&amp;d=mm&amp;r=g" srcSet="http://2.gravatar.com/avatar/?s=120&amp;d=mm&amp;r=g 2x" className="avatar avatar-60 photo avatar-default" height="60" width="60" /><span className="post-author-badge" aria-hidden="true"><svg className="svg-icon" width="24" height="24" aria-hidden="true" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"></path><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></span><span className="post-author-badge" aria-hidden="true"><svg className="svg-icon" width="24" height="24" aria-hidden="true" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"></path><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></span><b className="fn"></b></a><b className="fn"><a href="http://mtwoblog.com" rel="external nofollow" className="url">Muhammad Muhsin</a></b> <span className="screen-reader-text says">says:</span>					</div>{/* .comment-author */}
+                      <a href="http://mtwoblog.com" rel="external nofollow" className="url"><img alt="" src="http://2.gravatar.com/avatar/?s=60&amp;d=mm&amp;r=g" srcSet="http://2.gravatar.com/avatar/?s=120&amp;d=mm&amp;r=g 2x" className="avatar avatar-60 photo avatar-default" height="60" width="60" /><span className="post-author-badge" aria-hidden="true"><svg className="svg-icon" width="24" height="24" aria-hidden="true" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"></path><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></span><span className="post-author-badge" aria-hidden="true"><svg className="svg-icon" width="24" height="24" aria-hidden="true" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"></path><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></span><b className="fn"></b></a><b className="fn"><a href="http://mtwoblog.com" rel="external nofollow" className="url">Muhammad Muhsin</a></b> <span className="screen-reader-text says">says:</span>					
+                    </div>
 
                     <div className="comment-metadata">
                       <a href="http://localhost/mtwoblog.com/2017/10/02/wordcamp-colombo-2017-from-the-front-row/#comment-79">
                         <time dateTime="2017-10-02T22:10:39+00:00" title="October 2, 2017 at 10:10 pm">
                           October 2, 2017 at 10:10 pm							</time>
                       </a>
-                    </div>{/* .comment-metadata */}
+                    </div>
 
-                  </footer>{/* .comment-meta */}
+                  </footer>
 
                   <div className="comment-content">
                     <p>Sure, let’s have a meetup about it one day. Check out Chathu’s slides here: <a href="https://speakerdeck.com/iamchathu/hardening-wordpress-is-an-art" rel="nofollow">https://speakerdeck.com/iamchathu/hardening-wordpress-is-an-art</a></p>
-                  </div>{/* .comment-content */}
+                  </div>
 
-                </article>{/* .comment-body */}
+                </article>
 
-                <div className="comment-reply"><a rel="nofollow" className="comment-reply-link" href="/mtwoblog.com/2017/10/02/wordcamp-colombo-2017-from-the-front-row/?replytocom=79#respond" data-commentid="79" data-postid="567" data-belowelement="div-comment-79" data-respondelement="respond" aria-label="Reply to Muhammad Muhsin">Reply</a></div>		</li>{/* #comment-## */}
-            </ol>{/* .children */}
-          </li>{/* #comment-## */}
+                <div className="comment-reply"><a rel="nofollow" className="comment-reply-link" href="/mtwoblog.com/2017/10/02/wordcamp-colombo-2017-from-the-front-row/?replytocom=79#respond" data-commentid="79" data-postid="567" data-belowelement="div-comment-79" data-respondelement="respond" aria-label="Reply to Muhammad Muhsin">Reply</a></div>		
+              </li>
+            </ol>
+          </li> */}
 
           <>
             {
               pingbacks && pingbacks.length && pingbacks.map(pingback => (
                 <li id={`comment-${pingback.commentId}`} key={pingback.id} className="pingback even thread-odd thread-alt depth-1">
                   <div className="comment-body">
-                    Pingback: 
+                    Pingback:
                     <a href="" rel="external nofollow" className="url" dangerouslySetInnerHTML={{ __html: pingback.content }} />
                   </div>
                 </li>
