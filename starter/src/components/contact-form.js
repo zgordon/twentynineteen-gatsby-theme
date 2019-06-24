@@ -136,7 +136,7 @@ class ContactForm extends React.Component {
                           onChange={handleChange}
                           onBlur={handleBlur}
                           value={values.name || ''}
-                          aria-required="required"
+                          aria-required={true}
                         />
                         {errors.name && touched.name && errors.name}
                       </div>
@@ -148,7 +148,7 @@ class ContactForm extends React.Component {
                           onChange={handleChange}
                           onBlur={handleBlur}
                           value={values.email || ''}
-                          aria-required="required"
+                          aria-required={true}
                         />
                         {errors.email && touched.email && errors.email}
                       </div>
@@ -174,7 +174,7 @@ class ContactForm extends React.Component {
                           onChange={handleChange}
                           onBlur={handleBlur}
                           value={values.message || ''}
-                          aria-required="required"
+                          aria-required={true}
                         />
                         {errors.message && touched.message && errors.message}
                       </div>
