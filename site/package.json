@@ -1,7 +1,7 @@
 {
-  "name": "starter",
+  "name": "site",
   "version": "0.1.0",
-  "description": "The Starter Site to test the Twenty Nineteen Gatsby Theme.",
+  "description": "The site to test the Twenty Nineteen Gatsby Theme.",
   "main": "gatsby-config.js",
   "license": "MIT",
   "scripts": {

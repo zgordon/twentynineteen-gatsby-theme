@@ -13,7 +13,7 @@ const SinglePage = props => {
       <article
         data-id={id}
         id={`post-${postId}`}
-        className={`post-${postId} post type-post status-publish format-standard hentry category-react tag-accessibility tag-gatsby entry`}
+        className={`post-${postId} page type-page status-publish hentry entry`}
       >
         <header className="entry-header">
           <h1 className="entry-title">{title}</h1>
