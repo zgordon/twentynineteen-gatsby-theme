@@ -1,5 +1,5 @@
 # Twenty Nineteen Gatsby Theme
-A port of the Twenty Nineteen WordPress Theme over to Gatsby
+A port of the Twenty Nineteen WordPress Theme over to Gatsby. Check out the [demo site](https://twentynineteen-gatsby-theme.netlify.com).
 
 This repo contains the source code for a site using the above [Gatsby theme](https://www.gatsbyjs.org/blog/2018-11-11-introducing-gatsby-themes/).
 

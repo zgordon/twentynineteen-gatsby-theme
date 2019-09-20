@@ -4,9 +4,9 @@ import moment from "moment/moment"
 import AuthorIcon from "./icons/author"
 import DateIcon from "./icons/date"
 
-const PostHeaderMeta = ({ title, author, date }) => (
+const PostHeaderMeta = ({ title, author, date, uri }) => (
   <header className="entry-header">
-    <h1 className="entry-title">{title}</h1>
+    <h1 className="entry-title" dangerouslySetInnerHTML={{ __html: title }} />
     <div className="entry-meta">
       <span className="byline">
         <AuthorIcon />
@@ -19,8 +19,8 @@ const PostHeaderMeta = ({ title, author, date }) => (
       </span>{" "}
       <span className="posted-on">
         <DateIcon />
-        <a
-          href="http://localhost/mtwoblog.com/2019/02/04/using-react-context-api-with-gatsby/"
+        <Link
+          to={`blog/${uri}`}
           rel="bookmark"
         >
           <time
@@ -29,7 +29,7 @@ const PostHeaderMeta = ({ title, author, date }) => (
           >
             {moment(date).format(`MMMM D, YYYY`)}
           </time>
-        </a>
+        </Link>
       </span>
     </div>
   </header>
