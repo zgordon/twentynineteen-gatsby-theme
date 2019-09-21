@@ -5,21 +5,21 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "gatsby": "^2.1.23",
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3"
+    "gatsby": "^2.15.20",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
   },
   "peerDependencies": {
-    "gatsby": "^2.1.23",
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3"
+    "gatsby": "^2.15.20",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
   },
   "dependencies": {
-    "gatsby-plugin-sass": "^2.0.10",
-    "gatsby-source-graphql": "^2.0.11",
+    "gatsby-plugin-sass": "^2.1.15",
+    "gatsby-source-graphql": "^2.1.15",
     "moment": "^2.24.0",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.12.0",
     "prop-types": "^15.7.2",
-    "react-helmet": "^5.2.0"
+    "react-helmet": "^5.2.1"
   }
 }
