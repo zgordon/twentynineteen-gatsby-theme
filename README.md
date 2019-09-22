@@ -15,7 +15,7 @@ cd twentynineteen-gatsby-theme
 yarn
 
 # Start the site on http://localhost:8000
-yarn workspace starter develop
+yarn start
 ```
 
 If this is your first time using Yarn workspaces, [check out the docs](https://yarnpkg.com/lang/en/docs/workspaces/).
