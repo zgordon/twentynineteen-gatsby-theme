@@ -1,7 +1,7 @@
 {
-  "name": "starter",
+  "name": "site",
   "version": "0.1.0",
-  "description": "The Starter Site to test the Twenty Nineteen Gatsby Theme.",
+  "description": "The site to test the Twenty Nineteen Gatsby Theme.",
   "main": "gatsby-config.js",
   "license": "MIT",
   "scripts": {
@@ -14,9 +14,9 @@
   "dependencies": {
     "axios": "^0.19.0",
     "formik": "^1.5.7",
-    "gatsby": "^2.1.23",
-    "gatsby-theme-twentynineteen": "*",
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3"
+    "gatsby": "^2.15.20",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "gatsby-theme-twentynineteen": "*"
   }
 }

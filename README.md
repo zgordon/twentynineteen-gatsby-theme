@@ -15,7 +15,7 @@ cd twentynineteen-gatsby-theme
 yarn
 
 # Start the site on http://localhost:8000
-yarn workspace starter develop
+yarn start
 ```
 
 ## Contact Form

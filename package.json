@@ -3,12 +3,12 @@
   "name": "twentynineteen-gatsby-theme",
   "version": "1.0.0",
   "workspaces": [
-    "starter",
+    "site",
     "packages/*"
   ],
   "scripts": {
-    "develop": "yarn workspace starter develop",
-    "build": "yarn workspace starter build",
-    "start": "yarn workspace starter start"
+    "develop": "yarn workspace site develop",
+    "build": "yarn workspace site build",
+    "start": "yarn workspace site start"
   }
 }
