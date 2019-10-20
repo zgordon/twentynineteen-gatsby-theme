@@ -61,7 +61,8 @@ class ContactForm extends React.Component {
   }
 
   handleFormSubmit = (values, { setSubmitting, resetForm }, wordPressUrl) => {
-    const url = `${wordPressUrl}/wp-json/contact-form-7/v1/contact-forms/1761/feedback`;
+    const formId = 1761;
+    const url = `${wordPressUrl}/wp-json/contact-form-7/v1/contact-forms/${formId}/feedback`;
 
     const formData = new FormData();
     formData.append('your-name', values.name)
@@ -159,6 +160,7 @@ class ContactForm extends React.Component {
                           onChange={handleChange}
                           onBlur={handleBlur}
                           value={values.website || ''}
+                          required={false}
                         />
                         {errors.website && touched.website && errors.website}
                       </div>
