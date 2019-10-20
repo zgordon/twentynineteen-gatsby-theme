@@ -43,7 +43,7 @@ We added contact form support using Contact Form 7 (CF7) at the backend. Please 
 ```
 
 4. Add your contact form to a page and test if it's working. (This step is important.)
-5. Head over `starter/src/components/contact-form.js` on this project and make sure the form fields are consistent with the step 3.
+5. Head over `starter/src/components/contact-form.js` on this project and make sure the form fields are consistent with the step 3. Change the `formId` variable in `site/src/components/contact-form.js:64` to the ID of the CF7 form on your site.
 6. Render the component in any page and test your Gatsby site. Currently, it's rendering in `starter/src/pages/contact.js`
 
 ---
