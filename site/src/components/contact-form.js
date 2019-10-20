@@ -42,7 +42,6 @@ class ContactForm extends React.Component {
   }
 
   renderValidations = values => {
-    console.log('values', values)
     let errors = {};
     if (!values.name) {
       errors.name = <span className="error">Required</span>
