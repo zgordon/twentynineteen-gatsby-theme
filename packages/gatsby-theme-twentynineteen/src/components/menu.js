@@ -54,7 +54,7 @@ const createLocalLink = (url, wpUrl) => {
   if (`#` === url) {
     return null
   }
-  return url.replace(wpUrl, ``)
+  return url.replace(wpUrl, ``) + '/'
 }
 
 const renderMenuItem = (menuItem, wpUrl) => {

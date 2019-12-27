@@ -20,7 +20,7 @@ const PostHeaderMeta = ({ title, author, date, uri }) => (
       <span className="posted-on">
         <DateIcon />
         <Link
-          to={`blog/${uri}`}
+          to={`/blog/${uri}`}
           rel="bookmark"
         >
           <time
