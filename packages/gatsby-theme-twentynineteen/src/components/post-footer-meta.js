@@ -20,7 +20,7 @@ const PostFooterMeta = ({ author, date, categories, tags, uri }) => (
     <span className="posted-on">
       <DateIcon />
       <Link
-        to={`blog/${uri}`}
+        to={`/blog/${uri}`}
         rel="bookmark"
       >
         <time

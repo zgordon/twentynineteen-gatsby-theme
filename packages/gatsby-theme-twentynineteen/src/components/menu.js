@@ -21,7 +21,7 @@ const MENU_QUERY = graphql`
       }
     }
     wpgraphql {
-      menuItems(where: { location: MENU_1 }) {
+      menuItems(where: { location: PRIMARY }) {
         nodes {
           ...MenuFields
           childItems {
@@ -54,7 +54,7 @@ const createLocalLink = (url, wpUrl) => {
   if (`#` === url) {
     return null
   }
-  return url.replace(wpUrl, ``)
+  return url.replace(wpUrl, ``) + '/'
 }
 
 const renderMenuItem = (menuItem, wpUrl) => {
